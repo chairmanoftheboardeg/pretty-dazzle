@@ -1,1 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pretty Dazzle | Hand-Made Gifts Seychelles</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
 
+    <div id="loader">
+        <div class="loader-content">
+            <div class="logo-placeholder">PD</div>
+            <div class="loader-bar"></div>
+            <p>Hand-crafting magic...</p>
+        </div>
+    </div>
+
+    <a href="https://wa.me/2482569697" class="whatsapp-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+        <span>Order on WhatsApp</span>
+    </a>
+
+    <nav>
+        <div class="logo">Pretty Dazzle</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li class="dropdown">
+                <a href="javascript:void(0)">About Us ▾</a>
+                <div class="dropdown-content">
+                    <a href="#about">What We Do</a>
+                    <a href="#about">Our Team</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="javascript:void(0)">Socials ▾</a>
+                <div class="dropdown-content">
+                    <a href="#">Instagram</a>
+                    <a href="#">Facebook</a>
+                </div>
+            </li>
+            <li><a href="#offers">What We Offer</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="hero-image-container">
+            <img src="banner-placeholder.jpg" alt="Pretty Dazzle Banner" class="main-banner">
+            <div class="hero-text">
+                <h1>Hand-crafted in Paradise.</h1>
+                <p>Designed for your most precious moments.</p>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="mission section">
+        <div class="container">
+            <h2>Our Mission</h2>
+            <p>Founded by <strong>Marie-Ange Esparon</strong>, Pretty Dazzle is born from a love for the Seychelles and the art of giving. Our mission is simple yet profound: We bring you customized, unique crafting gifts, meticulously hand-made with ❤️ right here in 🇸🇨.</p>
+            <p>We believe a gift shouldn't just be an item; it should be a memory. From artisanal souvenirs to bespoke jewelry, every piece is created to turn simple moments into dazzling memories.</p>
+        </div>
+    </section>
+
+    <section class="sliding-gallery">
+        <div class="slider-track">
+            <div class="slide"><div class="img-box">Product 1</div></div>
+            <div class="slide"><div class="img-box">Product 2</div></div>
+            <div class="slide"><div class="img-box">Product 3</div></div>
+            <div class="slide"><div class="img-box">Product 4</div></div>
+            <div class="slide"><div class="img-box">Product 5</div></div>
+            <div class="slide"><div class="img-box">Product 1</div></div>
+            <div class="slide"><div class="img-box">Product 2</div></div>
+        </div>
+    </section>
+
+    <section id="offers" class="section">
+        <div class="container">
+            <h2>What We Offer</h2>
+            <div class="offer-grid">
+                <div class="card"><h3>Jewellery Sets</h3></div>
+                <div class="card"><h3>Curated Hampers</h3></div>
+                <div class="card"><h3>Flower Arrangements</h3></div>
+                <div class="card"><h3>Kids Tumblers</h3></div>
+                <div class="card"><h3>Artisanal Souvenirs</h3></div>
+                <div class="card"><h3>Wine & Treats</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2>How to Order</h2>
+            <div class="contact-box">
+                <p><strong>No Physical Shop • Personal Connection</strong></p>
+                <p>To keep our gifts unique and customized, we handle everything personally. Browse our collections and connect with us to arrange your <strong>in-person pick-up</strong>.</p>
+                <a href="tel:+2482569697" class="btn">Call: +248 2569697</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Pretty Dazzle Seychelles.</p>
+            <p class="bw-credit">Managed by <a href="https://bluewave-digital.tylernicholasgroup.com/">BlueWave Digital</a> | Tyler Nicholas Group</p>
+        </div>
+    </footer>
+
+    <script>
+        // Loading Screen Script
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                loader.style.opacity = '0';
+                setTimeout(() => loader.style.display = 'none', 500);
+            }, 2000); // 2 second animation
+        });
+    </script>
+</body>
+</html>
