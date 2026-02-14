@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pretty Dazzle | Hand-Made Gifts Seychelles</title>
-    <link rel="icon" type="image/png" href="favicon.png">
+    <meta name="description" content="Customised, unique crafting gifts hand-made with love in Seychelles.">
+    
     <link rel="stylesheet" href="style.css">
+    
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -14,174 +16,231 @@
     <div id="loader">
         <div class="loader-content">
             <h1 class="loader-logo">Pretty Dazzle</h1>
+            <p>Hand-crafting your experience...</p>
             <div class="loader-line"></div>
         </div>
     </div>
 
-    <a href="https://wa.me/2482569697" class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/2482569697" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
         <i class="fab fa-whatsapp"></i>
-        <span>Chat with Marie-Ange</span>
+        <span class="wa-text">Order on WhatsApp</span>
     </a>
 
-    <nav>
+    <nav id="navbar">
         <div class="nav-container">
             <a href="#" class="logo">Pretty Dazzle ✨</a>
+            
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li class="dropdown">
-                    <a>About Us ▾</a>
+                    <a href="#about">About ▾</a>
                     <ul class="dropdown-menu">
                         <li><a href="#mission">Our Mission</a></li>
-                        <li><a href="#team">Our Team</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a>Socials ▾</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#socials">Instagram</a></li>
-                        <li><a href="#socials">TikTok</a></li>
+                        <li><a href="#team">Meet Marie-Ange</a></li>
                     </ul>
                 </li>
                 <li><a href="#offers">Collections</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#reviews">Love Notes</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact" class="nav-btn">Contact Us</a></li>
             </ul>
         </div>
     </nav>
 
     <header id="home" class="hero">
-        <div class="hero-image-wrapper">
-            <img src="banner.jpg" alt="Pretty Dazzle Banner" class="hero-img">
-            <div class="hero-overlay">
-                <span class="sub-tag">Hand-crafted in Paradise 🇸🇨</span>
-                <h1>Designed for your<br><em>Dazzling</em> Moments</h1>
-                <a href="#offers" class="btn-main">Explore Collections</a>
+        <div class="hero-bg"></div> <div class="hero-content hidden">
+            <span class="tagline">Hand-crafted in Paradise 🇸🇨</span>
+            <h1>Designed for your<br><em>Dazzling</em> Moments</h1>
+            <p>Customised gifts, hampers, and jewellery made with ❤️.</p>
+            <div class="hero-buttons">
+                <a href="#offers" class="btn primary">View Collections</a>
+                <a href="#contact" class="btn secondary">Start Custom Order</a>
             </div>
         </div>
     </header>
 
     <section id="mission" class="section mission">
         <div class="container">
-            <h2 class="section-label">Founded by Marie-Ange Esparon</h2>
-            <p class="mission-text">Pretty Dazzle is born from a love for the Seychelles and the art of giving. Our mission is simple: <strong>We bring you customised, unique crafting gifts, meticulously hand-made with ❤️ in 🇸🇨.</strong></p>
-            <p class="mission-subtext">We believe a gift shouldn't just be an item; it should be a memory. Every piece is created to turn simple moments into dazzling memories.</p>
-        </div>
-    </section>
-
-    <div class="gallery-container">
-        <div class="scroll-track">
-            <div class="slide"><div class="img-box">Jewellery</div></div>
-            <div class="slide"><div class="img-box">Hampers</div></div>
-            <div class="slide"><div class="img-box">Flowers</div></div>
-            <div class="slide"><div class="img-box">Tumblers</div></div>
-            <div class="slide"><div class="img-box">Artisanal</div></div>
-            <div class="slide"><div class="img-box">Jewellery</div></div>
-            <div class="slide"><div class="img-box">Hampers</div></div>
-            <div class="slide"><div class="img-box">Flowers</div></div>
-            <div class="slide"><div class="img-box">Tumblers</div></div>
-            <div class="slide"><div class="img-box">Artisanal</div></div>
-        </div>
-    </div>
-
-    <section id="offers" class="section">
-        <div class="container">
-            <h2 class="title-center">Our Collections</h2>
-            <div class="offer-grid">
-                <div class="offer-item">
-                    <div class="offer-img"></div>
-                    <h3>Jewellery Sets</h3>
-                    <p>Elegant, hand-made sets for every style.</p>
+            <div class="mission-grid">
+                <div class="mission-text hidden">
+                    <h2>Our Mission is Simple</h2>
+                    <p class="lead">We bring you customised, unique crafting gifts hand-made with ❤️ in Seychelles.</p>
+                    <p>Founded by <strong>Marie-Ange Esparon</strong>, Pretty Dazzle is more than a gift shop; it's a celebration of local artistry. We believe every gift should tell a story. Whether it's a birthday, an anniversary, or a "just because" moment, we turn simple gestures into dazzling memories.</p>
                 </div>
-                <div class="offer-item">
-                    <div class="offer-img"></div>
-                    <h3>Curated Hampers</h3>
-                    <p>Thoughtfully selected gifts for any occasion.</p>
-                </div>
-                <div class="offer-item">
-                    <div class="offer-img"></div>
-                    <h3>Artificial Flowers</h3>
-                    <p>Eternal blooms arranged with elegance.</p>
-                </div>
-                <div class="offer-item">
-                    <div class="offer-img"></div>
-                    <h3>Kids Tumblers</h3>
-                    <p>Customized and fun drinkware for the little ones.</p>
-                </div>
-                <div class="offer-item">
-                    <div class="offer-img"></div>
-                    <h3>Artisanal Souvenirs</h3>
-                    <p>Unique treasures inspired by the Seychelles.</p>
-                </div>
-                <div class="offer-item">
-                    <div class="offer-img"></div>
-                    <h3>Sweet Treats</h3>
-                    <p>Chocolate hampers and premium wine sets.</p>
+                <div class="mission-stats hidden">
+                    <div class="stat-box">
+                        <i class="fas fa-heart"></i>
+                        <h3>100%</h3>
+                        <p>Hand-Made</p>
+                    </div>
+                    <div class="stat-box">
+                        <i class="fas fa-gem"></i>
+                        <h3>Unique</h3>
+                        <p>Custom Designs</p>
+                    </div>
+                    <div class="stat-box">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Local</h3>
+                        <p>Made in Mahe</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="socials" class="section bg-light">
-        <div class="container text-center">
-            <h2>Connect With Us</h2>
-            <div class="social-buttons">
-                <a href="#" class="social-card insta">
-                    <i class="fab fa-instagram"></i>
-                    <span>Instagram</span>
-                </a>
-                <a href="#" class="social-card tiktok">
-                    <i class="fab fa-tiktok"></i>
-                    <span>TikTok</span>
-                </a>
+    <div class="gallery-wrapper">
+        <div class="scroll-track">
+            <div class="slide"><div class="placeholder-img">Jewellery</div></div>
+            <div class="slide"><div class="placeholder-img">Hampers</div></div>
+            <div class="slide"><div class="placeholder-img">Flowers</div></div>
+            <div class="slide"><div class="placeholder-img">Tumblers</div></div>
+            <div class="slide"><div class="placeholder-img">Wine</div></div>
+            <div class="slide"><div class="placeholder-img">Jewellery</div></div>
+            <div class="slide"><div class="placeholder-img">Hampers</div></div>
+            <div class="slide"><div class="placeholder-img">Flowers</div></div>
+            <div class="slide"><div class="placeholder-img">Tumblers</div></div>
+            <div class="slide"><div class="placeholder-img">Wine</div></div>
+        </div>
+    </div>
+
+    <section id="offers" class="section bg-light">
+        <div class="container">
+            <div class="section-header hidden">
+                <h2>Our Collections</h2>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="offer-grid">
+                <div class="offer-card hidden">
+                    <div class="card-img">
+                        </div>
+                    <div class="card-info">
+                        <h3>Jewellery Sets</h3>
+                        <p>Sparkling, hand-crafted pieces for every occasion.</p>
+                    </div>
+                </div>
+                <div class="offer-card hidden">
+                    <div class="card-img"></div>
+                    <div class="card-info">
+                        <h3>Curated Hampers</h3>
+                        <p>Luxury gift baskets tailored to your needs.</p>
+                    </div>
+                </div>
+                <div class="offer-card hidden">
+                    <div class="card-img"></div>
+                    <div class="card-info">
+                        <h3>Artificial Flowers</h3>
+                        <p>Eternal blooms arranged with elegance.</p>
+                    </div>
+                </div>
+                <div class="offer-card hidden">
+                    <div class="card-img"></div>
+                    <div class="card-info">
+                        <h3>Kids Tumblers</h3>
+                        <p>Fun, personalized drinkware for little ones.</p>
+                    </div>
+                </div>
+                <div class="offer-card hidden">
+                    <div class="card-img"></div>
+                    <div class="card-info">
+                        <h3>Artisanal Souvenirs</h3>
+                        <p>The perfect keepsake from the Seychelles.</p>
+                    </div>
+                </div>
+                <div class="offer-card hidden">
+                    <div class="card-img"></div>
+                    <div class="card-info">
+                        <h3>Chocolate & Wine</h3>
+                        <p>Decadent treats for the ultimate indulgence.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="reviews" class="section">
-        <div class="container text-center">
-            <h2 class="title-center">Client Love</h2>
-            <div class="coming-soon-wrapper">
-                <div class="empty-state-icon">💌</div>
-                <h3>Not available yet!</h3>
-                <p>We are currently collecting our first dazzling memories.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="team" class="section bg-light">
         <div class="container">
-            <h2 class="title-center">Our Team</h2>
-            <div class="team-coming-soon">
-                <div class="coming-soon-overlay">
-                    <span class="badge">PRIVATE</span>
-                    <h3>Information not available as of now</h3>
+            <h2 class="section-title text-center hidden">Client Love</h2>
+            <div class="reviews-grid">
+                <div class="review-card hidden">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"The most beautiful hamper I have ever received! The detail is amazing."</p>
+                    <h4>- Sarah J.</h4>
                 </div>
-                <div class="blurred-card">
-                    <div class="fake-img"></div>
-                    <h4>Marie-Ange Esparon</h4>
-                    <p>Lead Designer & Founder</p>
+                <div class="review-card hidden">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Marie-Ange is so talented. The jewellery set was perfect for my anniversary."</p>
+                    <h4>- Jean-Luc M.</h4>
+                </div>
+                <div class="review-card hidden">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Quick service and very friendly. Highly recommend supporting this local business!"</p>
+                    <h4>- Clara B.</h4>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="section">
+    <section id="faq" class="section bg-light">
         <div class="container narrow">
-            <div class="order-card">
-                <h2>How to Order</h2>
-                <div class="order-line"></div>
-                <p class="order-subtitle">No Physical Shop • Personal Connection</p>
-                <p>To keep our gifts unique, we handle everything personally. Browse our collections and connect with us to arrange your <strong>in-person pick-up</strong>.</p>
-                <a href="tel:+2482569697" class="call-btn">📞 +248 2569697</a>
+            <h2 class="text-center hidden">Frequently Asked Questions</h2>
+            <div class="faq-wrapper hidden">
+                <details class="faq-item">
+                    <summary>Do you have a physical shop?</summary>
+                    <p>No, we do not have a physical storefront. We are a home-based artisan business. All orders are handled personally via WhatsApp or phone.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>How do I pick up my order?</summary>
+                    <p>We arrange **in-person pick-ups** for all orders. Once your gift is ready, we will coordinate a convenient time and location with you.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Can I customize a hamper?</summary>
+                    <p>Absolutely! Customization is our specialty. Let us know your budget and preferences, and we will curate something special.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <div class="contact-box hidden">
+                <h2>Let's Connect</h2>
+                <p>We'd love to hear from you. Whether you have a question about our products or want to start a custom order.</p>
+                
+                <div class="contact-methods">
+                    <div class="method">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+248 2569697</span>
+                    </div>
+                    <div class="method">
+                        <i class="fas fa-map-pin"></i>
+                        <span>Mahe, Seychelles</span>
+                    </div>
+                </div>
+
+                <a href="tel:+2482569697" class="btn-call">Call Now</a>
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="footer-bottom">
-            <div class="footer-left">&copy; 2026 Pretty Dazzle Seychelles.</div>
-            <div class="footer-right">
-                Managed by <a href="https://bluewave-digital.tylernicholasgroup.com/" target="_blank">BlueWave Digital</a> 
-                | A proud member of <a href="https://tylernicholasgroup.com/" target="_blank">The Tyler Nicholas Group</a>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>Pretty Dazzle</h3>
+                <p>Turning moments into memories.</p>
+            </div>
+            <div class="footer-credits">
+                <p>&copy; 2026 Pretty Dazzle Seychelles. All Rights Reserved.</p>
+                <div class="tech-credits">
+                    <p>Managed by <a href="https://bluewave-digital.tylernicholasgroup.com/" target="_blank">BlueWave Digital</a></p>
+                    <p>Member of <a href="https://tylernicholasgroup.com/" target="_blank">The Tyler Nicholas Group</a></p>
+                </div>
             </div>
         </div>
     </footer>
