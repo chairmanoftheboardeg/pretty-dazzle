@@ -1,6 +1,6 @@
 /* --- Variables & Setup --- */
 :root {
-    --pink-primary: #e83e8c; /* Matches the vibrant pink in your screenshot */
+    --pink-primary: #e83e8c;
     --pink-light: #fdf2f7;
     --text-dark: #2d2d2d;
     --text-gray: #666666;
@@ -22,6 +22,7 @@ body {
     color: var(--text-dark);
     background-color: var(--bg-white);
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 /* --- Loading Screen --- */
@@ -54,13 +55,15 @@ body {
     100% { transform: scale(1.2); }
 }
 
-/* --- Navigation --- */
+/* --- Navigation & Mobile Menu --- */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 5%;
     background-color: var(--bg-white);
+    position: relative;
+    z-index: 1002;
 }
 
 .logo {
@@ -68,6 +71,11 @@ body {
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--text-dark);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
 }
 
 .nav-links a {
@@ -78,18 +86,34 @@ body {
     transition: color 0.3s ease;
 }
 
-.nav-links a:hover {
+.nav-links a:hover, .nav-links a.active {
     color: var(--pink-primary);
 }
 
-/* --- Hero Section (Screenshot Match) --- */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 6px;
+    z-index: 1003;
+}
+
+.hamburger span {
+    width: 30px;
+    height: 3px;
+    background-color: var(--text-dark);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* --- Hero Section --- */
 .hero {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: 6rem 5%;
-    background-color: var(--pink-light); /* Soft background to make white buttons pop */
+    background-color: var(--pink-light);
     min-height: 80vh;
 }
 
@@ -165,11 +189,6 @@ body {
     border: 2px solid var(--bg-white);
 }
 
-.btn-small {
-    padding: 0.5rem 1.5rem;
-    font-size: 0.9rem;
-}
-
 /* --- Cookie Banner --- */
 .cookie-banner {
     position: fixed;
@@ -194,54 +213,8 @@ body {
     transform: translate(-50%, 20px);
 }
 
-.cookie-banner p {
-    font-size: 0.9rem;
-    margin: 0;
-}
-
-.cookie-banner a {
-    color: var(--pink-primary);
-    text-decoration: underline;
-}
-
-/* --- Footer --- */
-footer {
-    text-align: center;
-    padding: 3rem 5%;
-    background-color: var(--bg-white);
-    border-top: 1px solid #eaeaea;
-}
-
-footer p {
-    color: var(--text-gray);
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-}
-
-.group-links {
-    margin-top: 1.5rem;
-    font-size: 0.85rem;
-    color: var(--text-gray);
-}
-
-.group-links a {
-    color: var(--text-dark);
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.group-links a:hover {
-    color: var(--pink-primary);
-}
-
-/* --- Responsive Design --- */
-@media (max-width: 768px) {
-    .hero h1 { font-size: 3rem; }
-    .hero h1 .cursive { font-size: 3.5rem; }
-    .button-group { flex-direction: column; }
-    .nav-links { display: none; /* Add a hamburger menu later! */ }
-    .cookie-banner { flex-direction: column; width: 90%; gap: 1rem; text-align: center; }
-}
+.cookie-banner p { font-size: 0.9rem; margin: 0; }
+.cookie-banner a { color: var(--pink-primary); text-decoration: underline; }
 
 /* --- Inner Page Layouts --- */
 .page-header {
@@ -263,7 +236,7 @@ footer p {
     padding: 4rem 5%;
 }
 
-/* --- About Page Grid --- */
+/* About Grid */
 .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -278,7 +251,7 @@ footer p {
     margin-bottom: 1rem;
 }
 
-/* --- Collections Grid --- */
+/* Collections Grid */
 .collection-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -323,10 +296,8 @@ footer p {
     font-size: 0.9rem;
 }
 
-/* --- Terms & Conditions Layout --- */
-.terms-container {
-    max-width: 800px;
-}
+/* Terms Layout */
+.terms-container { max-width: 800px; }
 
 .term-block {
     margin-bottom: 2.5rem;
@@ -349,22 +320,72 @@ footer p {
     color: var(--text-gray);
 }
 
-.term-block li {
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 3rem 5%;
+    background-color: var(--bg-white);
+    border-top: 1px solid #eaeaea;
+}
+
+footer p {
+    color: var(--text-gray);
+    font-size: 0.9rem;
     margin-bottom: 0.5rem;
 }
 
-/* --- Active Nav Link --- */
-.nav-links a.active {
+.social-links a {
     color: var(--pink-primary);
+    text-decoration: none;
+    margin: 0 0.5rem;
     font-weight: 600;
 }
 
-/* --- Responsive Adjustments --- */
+.group-links {
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--text-gray);
+}
+
+.group-links a {
+    color: var(--text-dark);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.group-links a:hover { color: var(--pink-primary); }
+
+/* --- Responsive Adjustments & Mobile Menu --- */
 @media (max-width: 768px) {
-    .about-grid {
-        grid-template-columns: 1fr;
+    .hamburger { display: flex; }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background-color: var(--bg-white);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.4s ease;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        z-index: 1001;
+        gap: 2rem;
     }
-    .page-header h1 {
-        font-size: 2.5rem;
-    }
+
+    .nav-links.nav-active { right: 0; }
+    .nav-links a { margin: 0; font-size: 1.5rem; }
+
+    .hamburger.toggle span:nth-child(1) { transform: translateY(9px) rotate(45deg); background-color: var(--pink-primary); }
+    .hamburger.toggle span:nth-child(2) { opacity: 0; }
+    .hamburger.toggle span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); background-color: var(--pink-primary); }
+
+    .hero h1 { font-size: 3rem; }
+    .hero h1 .cursive { font-size: 3.5rem; }
+    .button-group { flex-direction: column; }
+    .cookie-banner { flex-direction: column; width: 90%; gap: 1rem; text-align: center; }
+    .about-grid { grid-template-columns: 1fr; }
+    .page-header h1 { font-size: 2.5rem; }
 }
