@@ -12,7 +12,12 @@
 <body>
 
     <nav class="navbar">
-        <a href="../" class="logo" style="text-decoration: none;">Pretty Dazzle</a>
+        <a href="../" class="logo">Pretty Dazzle</a>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <div class="nav-links">
             <a href="../">Home</a>
             <a href="../collections/">Collections</a>
@@ -27,7 +32,6 @@
     </header>
 
     <section class="page-container terms-container">
-        
         <div class="term-block">
             <h3>🛍️ Orders</h3>
             <ul>
@@ -36,7 +40,6 @@
                 <li>Full payment is required upon delivery.</li>
             </ul>
         </div>
-
         <div class="term-block">
             <h3>💳 Payments</h3>
             <ul>
@@ -44,7 +47,6 @@
                 <li>We accept payments via Bank Transfer (MCB), Cash, or POS Machine.</li>
             </ul>
         </div>
-
         <div class="term-block">
             <h3>↩️ Cancellations & Refunds</h3>
             <ul>
@@ -52,7 +54,6 @@
                 <li>Refunds are only provided in the event of an error on our part.</li>
             </ul>
         </div>
-
         <div class="term-block">
             <h3>🎁 Custom Hampers</h3>
             <ul>
@@ -61,7 +62,6 @@
                 <li>No changes can be made after the design has been approved.</li>
             </ul>
         </div>
-
         <div class="term-block">
             <h3>🚚 Delivery</h3>
             <ul>
@@ -70,7 +70,6 @@
                 <li>We are not responsible for any damages to the product after successful delivery.</li>
             </ul>
         </div>
-
         <div class="term-block">
             <h3>✨ Product Care</h3>
             <ul>
@@ -79,20 +78,36 @@
                 <li>Handle all glass items and tumblers with care.</li>
             </ul>
         </div>
-
     </section>
 
     <footer>
         <div class="footer-content">
             <p>Pretty Dazzle - Turning moments into memories.</p>
+            <div class="social-links" style="margin: 1rem 0;">
+                <a href="https://www.instagram.com/prettydazzled?utm_source=qr&igsh=MWRlY29wcWdhY3d3eQ==" target="_blank">Instagram</a> | 
+                <a href="https://www.tiktok.com/@pretty_dazzled?_r=1&_t=ZS-93tGPsqaVnR" target="_blank">TikTok</a> |
+                <a href="https://www.facebook.com/share/1DMy9XTiXC/" target="_blank">Facebook</a>
+            </div>
             <p>&copy; 2026 Pretty Dazzle Seychelles. All Rights Reserved.</p>
             <div class="group-links">
-                Managed by <a href="#" target="_blank">BlueWave Digital</a> | 
-                Member of <a href="#" target="_blank">The Tyler Nicholas Group</a> | 
-                By <a href="#" target="_blank">Tyler Nicholas</a>
+                Managed by <a href="https://bluewave-digital.tylernicholasgroup.com" target="_blank">BlueWave Digital</a> | 
+                Member of <a href="https://tylernicholasgroup.com" target="_blank">The Tyler Nicholas Group</a> | 
+                By <a href="https://tyler.tylernicholasgroup.com" target="_blank">Tyler Nicholas</a>
             </div>
         </div>
     </footer>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger) {
+                hamburger.addEventListener('click', () => {
+                    navLinks.classList.toggle('nav-active');
+                    hamburger.classList.toggle('toggle');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
