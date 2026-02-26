@@ -16,7 +16,14 @@
     </div>
 
     <nav class="navbar">
-        <div class="logo">Pretty Dazzle</div>
+        <a href="/" class="logo">Pretty Dazzle</a>
+        
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
         <div class="nav-links">
             <a href="/">Home</a>
             <a href="collections/">Collections</a>
@@ -28,13 +35,11 @@
     <header class="hero">
         <div class="hero-content">
             <span class="badge">HAND-CRAFTED IN PARADISE SC</span>
-            
             <h1>Designed for your <br> <span class="cursive">Dazzling</span> Moments</h1>
-            
             <p class="subtitle">Customised gifts, hampers, and jewellery made with 💖.</p>
             
             <div class="button-group">
-                <a href="#collections" class="btn btn-primary">View Collections</a>
+                <a href="collections/" class="btn btn-primary">View Collections</a>
                 <a href="https://wa.me/2482569697?text=Hi%20Pretty%20Dazzle!%20%F0%9F%91%8B%20I'd%20like%20to%20discuss%20a%20custom%20order." target="_blank" class="btn btn-secondary">Start Custom Order</a>
             </div>
         </div>
@@ -42,12 +47,17 @@
 
     <div id="cookie-banner" class="cookie-banner hidden">
         <p>We use cookies to ensure you get the best experience on our website. <a href="terms/">Privacy Policy</a></p>
-        <button id="accept-cookies" class="btn btn-primary btn-small">Accept</button>
+        <button id="accept-cookies" class="btn btn-primary" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Accept</button>
     </div>
 
     <footer>
         <div class="footer-content">
             <p>Pretty Dazzle - Turning moments into memories.</p>
+            <div class="social-links" style="margin: 1rem 0;">
+                <a href="https://www.instagram.com/prettydazzled?utm_source=qr&igsh=MWRlY29wcWdhY3d3eQ==" target="_blank">Instagram</a> | 
+                <a href="https://www.tiktok.com/@pretty_dazzled?_r=1&_t=ZS-93tGPsqaVnR" target="_blank">TikTok</a> |
+                <a href="https://www.facebook.com/share/1DMy9XTiXC/" target="_blank">Facebook</a>
+            </div>
             <p>&copy; 2026 Pretty Dazzle Seychelles. All Rights Reserved.</p>
             <div class="group-links">
                 Managed by <a href="https://bluewave-digital.tylernicholasgroup.com" target="_blank">BlueWave Digital</a> | 
@@ -58,30 +68,29 @@
     </footer>
 
     <script>
-        // Loading Screen Logic
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loader').classList.add('fade-out');
-            }, 800); // 0.8s delay to show off the loader
-        });
-
-        // Cookie Banner Logic
         document.addEventListener("DOMContentLoaded", function() {
+            // Loader Logic
+            setTimeout(() => { document.getElementById('loader').classList.add('fade-out'); }, 800);
+
+            // Cookie Banner Logic
             const cookieBanner = document.getElementById('cookie-banner');
-            const acceptBtn = document.getElementById('accept-cookies');
-
-            // Check if already accepted
             if (!localStorage.getItem('cookiesAccepted')) {
-                // Show banner after a slight delay
-                setTimeout(() => {
-                    cookieBanner.classList.remove('hidden');
-                }, 1500);
+                setTimeout(() => { cookieBanner.classList.remove('hidden'); }, 1500);
             }
-
-            acceptBtn.addEventListener('click', () => {
+            document.getElementById('accept-cookies').addEventListener('click', () => {
                 localStorage.setItem('cookiesAccepted', 'true');
                 cookieBanner.classList.add('hidden');
             });
+
+            // Mobile Menu Logic
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger) {
+                hamburger.addEventListener('click', () => {
+                    navLinks.classList.toggle('nav-active');
+                    hamburger.classList.toggle('toggle');
+                });
+            }
         });
     </script>
 </body>
