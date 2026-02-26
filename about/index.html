@@ -12,7 +12,12 @@
 <body>
 
     <nav class="navbar">
-        <a href="../" class="logo" style="text-decoration: none;">Pretty Dazzle</a>
+        <a href="../" class="logo">Pretty Dazzle</a>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <div class="nav-links">
             <a href="../">Home</a>
             <a href="../collections/">Collections</a>
@@ -21,34 +26,58 @@
         </div>
     </nav>
 
-    <section class="page-container">
-        <div class="about-grid">
-            <div class="about-text">
-                <span class="badge">OUR STORY</span>
-                <h1>Our Mission is <span class="cursive" style="color: var(--pink-primary);">Simple</span></h1>
-                <p class="lead-text">We bring you customised, unique crafting gifts hand-made with ❤️ in Seychelles.</p>
-                <p>Founded by <strong>Marie-Ange Esparon</strong>, Pretty Dazzle is more than a gift shop; it's a celebration of local artistry. We believe every gift should tell a story and turn ordinary moments into dazzling memories.</p>
-                
-                <h3 style="margin-top: 2rem; font-family: var(--font-heading);">Meet The Team</h3>
-                <p style="color: var(--text-gray); font-style: italic;">Updating... Team profiles currently not available.</p>
-            </div>
-            <div class="about-image">
-                <img src="https://placehold.co/600x600/fdf2f7/e83e8c?text=Marie-Ange+Image" alt="Founder Marie-Ange Esparon" style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-            </div>
+    <header class="page-header" style="background-color: var(--pink-light);">
+        <h1>Our <span class="cursive" style="color: var(--pink-primary);">Story</span></h1>
+        <p>Crafting joy and unforgettable memories in Seychelles.</p>
+    </header>
+
+    <section class="page-container" style="max-width: 800px; text-align: center;">
+        <span class="badge">ABOUT US</span>
+        <h2 style="font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-dark);">Welcome to Pretty Dazzle</h2>
+        <p class="lead-text" style="margin-bottom: 2.5rem;">We bring you customised, unique crafting gifts hand-made with ❤️ in Seychelles.</p>
+        
+        <div style="text-align: left; font-size: 1.05rem; color: var(--text-dark);">
+            <p style="margin-bottom: 1.5rem;">Founded by <strong>Christie Esparon</strong>, Pretty Dazzle is a celebration of local artistry and the pure joy of giving. What began as a personal passion for detailed crafting has blossomed into a dedicated gifting service, designed to bring dazzling smiles to faces across the islands.</p>
+            
+            <p style="margin-bottom: 1.5rem;">We believe that every gift should tell a unique, personal story. Whether you are celebrating a milestone birthday, a romantic anniversary, or simply surprising a loved one "just because," our creations are made to elevate those ordinary days into extraordinary moments. From our carefully curated luxury hampers bursting with treats to our vibrant, eternal artificial blooms, we pour our hearts into every single detail.</p>
+            
+            <p style="margin-bottom: 2rem;">Quality and presentation are at the core of what we do. We source beautiful materials, assemble each piece with precision, and package everything with the signature elegance that defines the Pretty Dazzle experience. When you choose us, you are not just purchasing a gift; you are investing in a beautifully hand-crafted memory designed to last a lifetime.</p>
+        </div>
+        
+        <div style="border-top: 1px solid #eaeaea; padding-top: 2rem; margin-top: 3rem;">
+            <h3 style="font-family: var(--font-heading); font-size: 1.8rem; color: var(--text-dark);">Meet The Team</h3>
+            <p style="color: var(--text-gray); font-style: italic; margin-top: 0.5rem;">Updating... Team profiles currently not available.</p>
         </div>
     </section>
 
     <footer>
         <div class="footer-content">
             <p>Pretty Dazzle - Turning moments into memories.</p>
+            <div class="social-links" style="margin: 1rem 0;">
+                <a href="https://www.instagram.com/prettydazzled?utm_source=qr&igsh=MWRlY29wcWdhY3d3eQ==" target="_blank">Instagram</a> | 
+                <a href="https://www.tiktok.com/@pretty_dazzled?_r=1&_t=ZS-93tGPsqaVnR" target="_blank">TikTok</a> |
+                <a href="https://www.facebook.com/share/1DMy9XTiXC/" target="_blank">Facebook</a>
+            </div>
             <p>&copy; 2026 Pretty Dazzle Seychelles. All Rights Reserved.</p>
             <div class="group-links">
-                Managed by <a href="#" target="_blank">BlueWave Digital</a> | 
-                Member of <a href="#" target="_blank">The Tyler Nicholas Group</a> | 
-                By <a href="#" target="_blank">Tyler Nicholas</a>
+                Managed by <a href="https://bluewave-digital.tylernicholasgroup.com" target="_blank">BlueWave Digital</a> | 
+                Member of <a href="https://tylernicholasgroup.com" target="_blank">The Tyler Nicholas Group</a> | 
+                By <a href="https://tyler.tylernicholasgroup.com" target="_blank">Tyler Nicholas</a>
             </div>
         </div>
     </footer>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            if (hamburger) {
+                hamburger.addEventListener('click', () => {
+                    navLinks.classList.toggle('nav-active');
+                    hamburger.classList.toggle('toggle');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
