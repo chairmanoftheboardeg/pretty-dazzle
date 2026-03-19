@@ -5,30 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pretty Dazzle | Custom Gifts & Hampers in Seychelles</title>
     
-    <link rel="icon" href="https://i.ibb.co/mrrrmY1D/IMG-20260213-WA0008.jpg" type="image/jpeg">
+    <link rel="icon" href="https://i.ibb.co/8DQxf01L/IMG-20260213-WA0007-removebg-preview.png" type="image/png">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
-        /* --- BOUTIQUE VARIABLES --- */
+        /* --- LIGHT PINK & WHITE BOUTIQUE VARIABLES --- */
         :root {
-            --pd-cream: #fdfbf7;
-            --pd-blush: #e8c5c8;
-            --pd-blush-dark: #d6a1a5;
-            --pd-charcoal: #3a3335;
-            --pd-text-muted: #6b6062;
+            --pd-bg-pink: #fef5f7; /* Ultra light airy pink */
             --pd-white: #ffffff;
-            --pd-gold: #c9a87c;
+            --pd-accent-pink: #ffb6c1; /* Classic light pink */
+            --pd-dark-pink: #d87093; /* Richer pink for readability and hovers */
+            --pd-text-main: #3a3a3a; /* Soft dark gray, not harsh black */
+            --pd-text-muted: #757575;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--pd-cream);
-            color: var(--pd-charcoal);
+            background-color: var(--pd-bg-pink);
+            color: var(--pd-text-main);
             line-height: 1.8;
             overflow-x: hidden;
         }
@@ -36,160 +35,203 @@
         h1, h2, h3, h4 { 
             font-family: 'Playfair Display', serif; 
             font-weight: 600; 
-            color: var(--pd-charcoal); 
+            color: var(--pd-text-main); 
         }
 
         /* --- LOADER --- */
         #loader {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background-color: var(--pd-cream); display: flex; justify-content: center; align-items: center;
+            background-color: var(--pd-bg-pink); display: flex; justify-content: center; align-items: center;
             z-index: 9999; transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
         }
-        .loader-logo { width: 80px; border-radius: 50%; animation: pulse 2s infinite; }
+        .loader-logo { width: 100px; animation: pulse 2s infinite; }
         @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.7; } 100% { transform: scale(1); opacity: 1; } }
 
         /* --- NAVBAR --- */
         .navbar {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 1rem 5%; background: rgba(253, 251, 247, 0.95); backdrop-filter: blur(10px);
+            padding: 0.8rem 5%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
             position: fixed; width: 100%; top: 0; z-index: 1000; 
-            border-bottom: 1px solid rgba(232, 197, 200, 0.3);
+            border-bottom: 1px solid rgba(255, 182, 193, 0.3);
             transition: all 0.3s ease;
         }
-        .navbar.scrolled { box-shadow: 0 5px 20px rgba(58, 51, 53, 0.05); }
+        .navbar.scrolled { box-shadow: 0 5px 20px rgba(255, 182, 193, 0.15); }
 
         .logo { display: flex; align-items: center; gap: 15px; text-decoration: none; }
-        .logo img { height: 50px; width: 50px; border-radius: 50%; object-fit: cover; }
-        .logo span { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--pd-charcoal); letter-spacing: 1px;}
+        .logo img { height: 60px; object-fit: contain; }
+        .logo span { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--pd-text-main); letter-spacing: 1px;}
 
         .nav-links { list-style: none; display: flex; gap: 2.5rem; align-items: center; }
         .nav-links a { 
-            color: var(--pd-charcoal); text-decoration: none; 
+            color: var(--pd-text-main); text-decoration: none; 
             font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;
             transition: color 0.3s; position: relative;
         }
         .nav-links a::after {
             content: ''; position: absolute; width: 0; height: 1px; 
-            bottom: -4px; left: 0; background-color: var(--pd-blush-dark); 
+            bottom: -4px; left: 0; background-color: var(--pd-dark-pink); 
             transition: width 0.3s ease;
         }
         .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-links a:hover, .nav-links a.active { color: var(--pd-dark-pink); }
 
         .nav-socials { display: flex; gap: 1rem; }
-        .nav-socials a { color: var(--pd-charcoal); font-size: 1.1rem; transition: color 0.3s; }
-        .nav-socials a:hover { color: var(--pd-blush-dark); }
+        .nav-socials a { color: var(--pd-text-main); font-size: 1.1rem; transition: color 0.3s; }
+        .nav-socials a:hover { color: var(--pd-dark-pink); }
 
-        /* --- HERO BANNER (BLURRED) --- */
+        /* --- HERO BANNER (LIGHT & AIRY) --- */
         .hero {
-            position: relative; height: 80vh; min-height: 500px;
+            position: relative; height: 85vh; min-height: 500px;
             display: flex; align-items: center; justify-content: center; text-align: center;
             padding: 0 5%; margin-top: 70px; overflow: hidden;
         }
-        /* The Background Image */
         .hero-bg {
             position: absolute; top: -5%; left: -5%; width: 110%; height: 110%;
             background-image: url('https://i.ibb.co/PzrmNKS7/IMG-20260213-WA0014.jpg');
             background-size: cover; background-position: center;
-            filter: blur(8px); /* The requested blur */
+            filter: blur(10px); 
             z-index: 1;
         }
-        /* The Overlay to soften the image and make text readable */
         .hero-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(253, 251, 247, 0.65);
+            background: rgba(255, 255, 255, 0.85); /* Bright white overlay to match theme */
             z-index: 2;
         }
 
         .hero-content { position: relative; z-index: 3; max-width: 800px; }
-        .hero-content h1 { font-size: 4.5rem; line-height: 1.1; margin-bottom: 1.5rem; color: var(--pd-charcoal); animation: fadeInUp 1s ease-out; }
-        .hero-content p { font-size: 1.2rem; margin-bottom: 2.5rem; color: var(--pd-charcoal); font-weight: 400; animation: fadeInUp 1s ease-out 0.2s both; }
+        .hero-content h1 { font-size: 4.5rem; line-height: 1.1; margin-bottom: 1.5rem; color: var(--pd-text-main); animation: fadeInUp 1s ease-out; }
+        .hero-content p { font-size: 1.2rem; margin-bottom: 2.5rem; color: var(--pd-text-muted); font-weight: 400; animation: fadeInUp 1s ease-out 0.2s both; }
 
         .btn-primary {
-            display: inline-block; background-color: var(--pd-blush-dark); color: var(--pd-white);
+            display: inline-block; background-color: var(--pd-accent-pink); color: var(--pd-white);
             padding: 1rem 2.5rem; border-radius: 50px; text-decoration: none;
-            font-size: 0.95rem; font-weight: 500; text-transform: uppercase; letter-spacing: 2px;
+            font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;
             transition: all 0.3s ease; border: 1px solid transparent;
+            box-shadow: 0 5px 15px rgba(255, 182, 193, 0.4);
             animation: fadeInUp 1s ease-out 0.4s both;
         }
         .btn-primary:hover {
-            background-color: transparent; color: var(--pd-charcoal);
-            border-color: var(--pd-charcoal);
+            background-color: var(--pd-dark-pink); 
+            box-shadow: 0 8px 20px rgba(216, 112, 147, 0.3);
+            transform: translateY(-2px);
         }
 
         /* --- THE STORY (ABOUT) --- */
         .story-section { padding: 6rem 5%; background-color: var(--pd-white); }
         .story-container { max-width: 900px; margin: 0 auto; text-align: center; }
         
-        .section-subtitle { font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 3px; font-size: 0.85rem; color: var(--pd-blush-dark); margin-bottom: 1rem; display: block; }
+        .section-subtitle { font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 3px; font-size: 0.85rem; color: var(--pd-dark-pink); margin-bottom: 1rem; display: block; }
         .story-container h2 { font-size: 2.8rem; margin-bottom: 2rem; }
         
         .story-text { font-size: 1.1rem; color: var(--pd-text-muted); line-height: 1.9; margin-bottom: 1.5rem; }
-        .story-text strong { color: var(--pd-charcoal); font-weight: 600; }
+        .story-text strong { color: var(--pd-text-main); font-weight: 600; }
 
-        .founder-block { margin-top: 3rem; padding-top: 3rem; border-top: 1px solid rgba(232, 197, 200, 0.4); display: flex; flex-direction: column; align-items: center; }
-        .founder-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-style: italic; color: var(--pd-charcoal); margin-bottom: 1rem; }
+        .founder-block { margin-top: 3rem; padding-top: 3rem; border-top: 1px solid rgba(255, 182, 193, 0.3); display: flex; flex-direction: column; align-items: center; }
+        .founder-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-style: italic; color: var(--pd-text-main); margin-bottom: 1rem; }
         .btn-linkedin {
             display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem;
             color: var(--pd-text-muted); text-decoration: none; transition: color 0.3s;
         }
-        .btn-linkedin:hover { color: #0a66c2; } /* LinkedIn Blue on hover */
+        .btn-linkedin:hover { color: var(--pd-dark-pink); } 
 
-        /* --- COLLECTIONS PREVIEW --- */
-        .collections-section { padding: 6rem 5%; background-color: var(--pd-cream); }
+        /* --- COLLECTIONS PREVIEW (TEXT ONLY) --- */
+        .collections-section { padding: 6rem 5%; background-color: var(--pd-bg-pink); }
         .collections-header { text-align: center; margin-bottom: 4rem; }
         .collections-header h2 { font-size: 2.8rem; }
 
-        .collections-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; max-width: 1200px; margin: 0 auto; }
-        
-        .collection-card {
-            background: var(--pd-white); border-radius: 12px; overflow: hidden;
-            box-shadow: 0 10px 30px rgba(58, 51, 53, 0.04); transition: transform 0.4s ease;
-            text-decoration: none; color: var(--pd-charcoal); display: block;
+        .collections-grid { 
+            display: grid; grid-template-columns: repeat(3, 1fr); 
+            gap: 2.5rem; max-width: 1200px; margin: 0 auto; 
         }
-        .collection-card:hover { transform: translateY(-10px); }
         
-        .collection-img { width: 100%; height: 300px; overflow: hidden; }
-        .collection-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-        .collection-card:hover .collection-img img { transform: scale(1.08); }
+        .text-card {
+            background: var(--pd-white);
+            padding: 3.5rem 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255, 182, 193, 0.4);
+            box-shadow: 0 5px 15px rgba(255, 182, 193, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
         
-        .collection-info { padding: 2rem; text-align: center; }
-        .collection-info h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
-        .collection-info p { font-size: 0.95rem; color: var(--pd-text-muted); font-family: 'Inter', sans-serif;}
+        .text-card::before {
+            content: ''; position: absolute; top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 40px; height: 3px;
+            background-color: var(--pd-accent-pink);
+            border-radius: 0 0 4px 4px;
+            transition: all 0.4s ease;
+        }
+
+        .text-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 20px 40px rgba(255, 182, 193, 0.2); 
+            border-color: var(--pd-accent-pink); 
+        }
+        .text-card:hover::before { width: 100%; border-radius: 0; background-color: var(--pd-dark-pink); }
+
+        .card-icon { 
+            font-size: 2.5rem; color: var(--pd-accent-pink); 
+            margin-bottom: 1.5rem; transition: transform 0.4s ease;
+        }
+        .text-card:hover .card-icon { transform: scale(1.1); color: var(--pd-dark-pink); }
+
+        .text-card h3 { font-size: 1.6rem; margin-bottom: 1rem; }
+        .text-card p { 
+            color: var(--pd-text-muted); margin-bottom: 2.5rem; 
+            font-size: 0.95rem; line-height: 1.7; flex-grow: 1;
+        }
+
+        .btn-outline {
+            display: inline-block; background-color: transparent; 
+            color: var(--pd-dark-pink); border: 1px solid var(--pd-dark-pink);
+            padding: 0.6rem 1.8rem; border-radius: 50px; text-decoration: none;
+            font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+            transition: all 0.3s ease; margin-top: auto;
+        }
+        .text-card:hover .btn-outline {
+            background-color: var(--pd-dark-pink); color: var(--pd-white);
+        }
 
         /* --- HOW TO ORDER --- */
         .order-section { padding: 5rem 5%; background-color: var(--pd-white); text-align: center; }
         .order-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; max-width: 1000px; margin: 3rem auto 0; }
-        .order-step i { font-size: 2.5rem; color: var(--pd-blush-dark); margin-bottom: 1.5rem; }
+        .order-step i { font-size: 2.5rem; color: var(--pd-accent-pink); margin-bottom: 1.5rem; }
         .order-step h4 { font-size: 1.2rem; margin-bottom: 0.5rem; }
         .order-step p { font-size: 0.95rem; color: var(--pd-text-muted); }
 
-        /* --- BOUTIQUE FOOTER --- */
-        .site-footer { background-color: var(--pd-charcoal); color: var(--pd-cream); padding: 5rem 5% 2rem; text-align: center; }
+        /* --- LIGHT THEME FOOTER --- */
+        .site-footer { background-color: var(--pd-white); color: var(--pd-text-main); padding: 5rem 5% 2rem; text-align: center; border-top: 1px solid rgba(255, 182, 193, 0.3); }
         .footer-content { max-width: 600px; margin: 0 auto 3rem; }
-        .footer-logo { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; margin-bottom: 1rem; color: var(--pd-white); }
-        .footer-content p { color: rgba(253, 251, 247, 0.7); font-size: 0.95rem; margin-bottom: 2rem; }
+        .footer-logo { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; margin-bottom: 1rem; color: var(--pd-text-main); }
+        .footer-content p { color: var(--pd-text-muted); font-size: 0.95rem; margin-bottom: 2rem; }
         
         .footer-socials { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 3rem; }
         .footer-socials a { 
             display: flex; align-items: center; justify-content: center; width: 45px; height: 45px;
-            border: 1px solid rgba(253, 251, 247, 0.2); border-radius: 50%;
-            color: var(--pd-cream); font-size: 1.2rem; transition: all 0.3s; text-decoration: none;
+            border: 1px solid var(--pd-accent-pink); border-radius: 50%;
+            color: var(--pd-dark-pink); font-size: 1.2rem; transition: all 0.3s; text-decoration: none;
+            background: var(--pd-bg-pink);
         }
-        .footer-socials a:hover { background-color: var(--pd-blush-dark); border-color: var(--pd-blush-dark); color: var(--pd-white); transform: translateY(-3px); }
+        .footer-socials a:hover { background-color: var(--pd-dark-pink); border-color: var(--pd-dark-pink); color: var(--pd-white); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(216, 112, 147, 0.3);}
 
         .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap; }
-        .footer-links a { color: var(--pd-cream); text-decoration: none; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; }
-        .footer-links a:hover { color: var(--pd-blush-dark); }
+        .footer-links a { color: var(--pd-text-main); text-decoration: none; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--pd-dark-pink); }
 
         /* BlueWave Digital Attribution */
-        .footer-bottom { border-top: 1px solid rgba(253, 251, 247, 0.1); padding-top: 2rem; font-size: 0.85rem; color: rgba(253, 251, 247, 0.5); }
-        .agency-link { display: inline-flex; align-items: center; gap: 6px; color: var(--pd-white); text-decoration: none; font-weight: 600; margin-top: 10px; transition: color 0.3s;}
-        .agency-link:hover { color: var(--pd-blush-dark); }
+        .footer-bottom { border-top: 1px solid rgba(255, 182, 193, 0.3); padding-top: 2rem; font-size: 0.85rem; color: var(--pd-text-muted); }
+        .agency-link { display: inline-flex; align-items: center; gap: 6px; color: var(--pd-text-main); text-decoration: none; font-weight: 600; margin-top: 10px; transition: color 0.3s;}
+        .agency-link:hover { color: var(--pd-dark-pink); }
 
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
         /* MOBILE RESPONSIVE */
-        .menu-toggle { display: none; font-size: 1.5rem; color: var(--pd-charcoal); cursor: pointer; }
+        .menu-toggle { display: none; font-size: 1.5rem; color: var(--pd-text-main); cursor: pointer; }
         
         @media (max-width: 900px) {
             .nav-links, .nav-socials { display: none; }
@@ -203,12 +245,12 @@
 <body>
 
     <div id="loader">
-        <img src="https://i.ibb.co/mrrrmY1D/IMG-20260213-WA0008.jpg" alt="Pretty Dazzle" class="loader-logo">
+        <img src="https://i.ibb.co/8DQxf01L/IMG-20260213-WA0007-removebg-preview.png" alt="Pretty Dazzle" class="loader-logo">
     </div>
 
     <nav class="navbar" id="navbar">
         <a href="/" class="logo">
-            <img src="https://i.ibb.co/mrrrmY1D/IMG-20260213-WA0008.jpg" alt="Pretty Dazzle Logo">
+            <img src="https://i.ibb.co/8DQxf01L/IMG-20260213-WA0007-removebg-preview.png" alt="Pretty Dazzle Logo">
             <span>Pretty Dazzle</span>
         </a>
         
@@ -265,65 +307,47 @@
 
         <div class="collections-grid">
             
-            <a href="/collections/" class="collection-card">
-                <div class="collection-img">
-                    <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=800&auto=format&fit=crop" alt="Curated Hampers">
-                </div>
-                <div class="collection-info">
-                    <h3>Curated Hampers</h3>
-                    <p>Luxury gift baskets tailored to your needs.</p>
-                </div>
-            </a>
+            <div class="text-card">
+                <div class="card-icon"><i class="fa-solid fa-gift"></i></div>
+                <h3>Curated Hampers</h3>
+                <p>Luxury gift baskets perfectly tailored to your needs, bursting with premium treats and elegant details.</p>
+                <a href="https://wa.me/2482569697?text=Hello%20Pretty%20Dazzle!%20I%20am%20interested%20in%20a%20Curated%20Hamper." target="_blank" class="btn-outline">Inquire</a>
+            </div>
 
-            <a href="/collections/" class="collection-card">
-                <div class="collection-img">
-                    <img src="https://images.unsplash.com/photo-1563241527-300ecb188825?q=80&w=800&auto=format&fit=crop" alt="Eternal Blooms">
-                </div>
-                <div class="collection-info">
-                    <h3>Eternal Blooms</h3>
-                    <p>Hand-crafted artificial flower arrangements.</p>
-                </div>
-            </a>
+            <div class="text-card">
+                <div class="card-icon"><i class="fa-brands fa-pagelines"></i></div>
+                <h3>Eternal Blooms</h3>
+                <p>Stunning, hand-crafted artificial flower arrangements designed to maintain their beauty for a lifetime.</p>
+                <a href="https://wa.me/2482569697?text=Hello%20Pretty%20Dazzle!%20I%20am%20interested%20in%20Eternal%20Blooms." target="_blank" class="btn-outline">Inquire</a>
+            </div>
 
-            <a href="/collections/" class="collection-card">
-                <div class="collection-img">
-                    <img src="https://images.unsplash.com/photo-1614224353427-020580bfb9fb?q=80&w=800&auto=format&fit=crop" alt="Personalized Tumblers">
-                </div>
-                <div class="collection-info">
-                    <h3>Personalized Tumblers</h3>
-                    <p>Fun, themed drinkware for everyone.</p>
-                </div>
-            </a>
+            <div class="text-card">
+                <div class="card-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                <h3>Personal Tumblers</h3>
+                <p>Fun, themed, and custom-designed drinkware crafted specifically for you or your recipient.</p>
+                <a href="https://wa.me/2482569697?text=Hello%20Pretty%20Dazzle!%20I%20am%20interested%20in%20a%20Personalized%20Tumbler." target="_blank" class="btn-outline">Inquire</a>
+            </div>
 
-            <a href="/collections/" class="collection-card">
-                <div class="collection-img">
-                    <img src="https://images.unsplash.com/photo-1582650073289-4971c26dd00c?q=80&w=800&auto=format&fit=crop" alt="Gifts for Him">
-                </div>
-                <div class="collection-info">
-                    <h3>Gifts for Him</h3>
-                    <p>Sophisticated hampers with wine and chocolates.</p>
-                </div>
-            </a>
+            <div class="text-card">
+                <div class="card-icon"><i class="fa-solid fa-wine-glass"></i></div>
+                <h3>Gifts for Him</h3>
+                <p>Sophisticated, masculine hampers expertly curated with fine wine, chocolates, and elevated aesthetics.</p>
+                <a href="https://wa.me/2482569697?text=Hello%20Pretty%20Dazzle!%20I%20am%20interested%20in%20Gifts%20for%20Him." target="_blank" class="btn-outline">Inquire</a>
+            </div>
 
-            <a href="/collections/" class="collection-card">
-                <div class="collection-img">
-                    <img src="https://images.unsplash.com/photo-1582794543139-8ac9cb0f7b11?q=80&w=800&auto=format&fit=crop" alt="Specialty Bouquets">
-                </div>
-                <div class="collection-info">
-                    <h3>Specialty Bouquets</h3>
-                    <p>Unique designs featuring dolls and decor.</p>
-                </div>
-            </a>
+            <div class="text-card">
+                <div class="card-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                <h3>Specialty Bouquets</h3>
+                <p>Unique, imaginative designs featuring delicate dolls, custom decor, and striking visual elements.</p>
+                <a href="https://wa.me/2482569697?text=Hello%20Pretty%20Dazzle!%20I%20am%20interested%20in%20a%20Specialty%20Bouquet." target="_blank" class="btn-outline">Inquire</a>
+            </div>
 
-            <a href="/collections/" class="collection-card">
-                <div class="collection-img">
-                    <img src="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?q=80&w=800&auto=format&fit=crop" alt="Themed Gift Sets">
-                </div>
-                <div class="collection-info">
-                    <h3>Themed Gift Sets</h3>
-                    <p>Matching sets perfect for birthdays.</p>
-                </div>
-            </a>
+            <div class="text-card">
+                <div class="card-icon"><i class="fa-solid fa-box-open"></i></div>
+                <h3>Themed Gift Sets</h3>
+                <p>Beautifully coordinated, matching sets perfect for milestone birthdays, anniversaries, and celebrations.</p>
+                <a href="https://wa.me/2482569697?text=Hello%20Pretty%20Dazzle!%20I%20am%20interested%20in%20a%20Themed%20Gift%20Set." target="_blank" class="btn-outline">Inquire</a>
+            </div>
 
         </div>
     </section>
@@ -399,7 +423,7 @@
             }
         });
 
-        // Mobile Menu Toggle (Basic implementation)
+        // Mobile Menu Toggle 
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
         
@@ -413,9 +437,9 @@
                 navLinks.style.top = '100%';
                 navLinks.style.left = '0';
                 navLinks.style.width = '100%';
-                navLinks.style.backgroundColor = 'rgba(253, 251, 247, 0.98)';
+                navLinks.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
                 navLinks.style.padding = '2rem 0';
-                navLinks.style.boxShadow = '0 10px 15px rgba(0,0,0,0.05)';
+                navLinks.style.boxShadow = '0 10px 15px rgba(255, 182, 193, 0.15)';
             }
         });
     </script>
