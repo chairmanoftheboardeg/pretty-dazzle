@@ -6,9 +6,7 @@
     <title>Pretty Dazzle | Custom Gifts in Seychelles</title>
     
     <link rel="icon" href="https://i.ibb.co/8DQxf01L/IMG-20260213-WA0007-removebg-preview.png" type="image/png">
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
@@ -53,7 +51,7 @@
             border-top-color: var(--accent-dark); border-right-color: var(--accent-light);
             animation: spin 1.5s linear infinite;
         }
-        .loader-logo { width: 70px; object-fit: contain; animation: pulse 2s infinite; }
+        .loader-logo { width: 70px; object-fit: contain; animation: pulse 2s infinite; mix-blend-mode: multiply; }
         @keyframes spin { 100% { transform: rotate(360deg); } }
         @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.05); opacity: 0.8; } }
 
@@ -67,7 +65,7 @@
         .navbar.scrolled { background: rgba(255, 255, 255, 0.95); box-shadow: var(--glow-shadow); }
 
         .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .logo img { height: 50px; object-fit: contain; transition: transform 0.3s; }
+        .logo img { height: 50px; object-fit: contain; transition: transform 0.3s; mix-blend-mode: multiply; /* FIX FOR WHITE BACKGROUND */ }
         .logo:hover img { transform: scale(1.1) rotate(5deg); }
         .logo span { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--text-dark); letter-spacing: 0.5px;}
 
@@ -184,7 +182,7 @@
         }
         .tech-card:hover .btn-outline { background: var(--accent-dark); color: var(--pure-white); }
 
-        /* --- HOW TO ORDER (Glowing Process) --- */
+        /* --- HOW TO ORDER --- */
         .order-section { padding: 6rem 5%; background-color: var(--pure-white); text-align: center; }
         .order-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; max-width: 1000px; margin: 4rem auto 0; }
         
@@ -196,7 +194,6 @@
             box-shadow: 0 10px 25px rgba(216, 112, 147, 0.15); border: 1px solid var(--bg-pink);
             position: relative; z-index: 2;
         }
-        /* Connecting Line */
         .step-item:not(:last-child)::after {
             content: ''; position: absolute; top: 45px; left: 60%; width: 80%; height: 2px;
             background: dashed 2px var(--accent-light); z-index: 1; opacity: 0.5;
@@ -216,9 +213,11 @@
         /* --- HIGH-TECH FOOTER --- */
         .site-footer { background-color: var(--bg-pink); color: var(--text-dark); padding: 4rem 5% 2rem; text-align: center; }
         .footer-content { max-width: 600px; margin: 0 auto 3rem; }
-        .footer-logo { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 1.5rem; }
-        .footer-logo img { height: 60px; object-fit: contain; }
-        .footer-logo span { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--text-dark); }
+        
+        /* FIX FOR FOOTER LOGO (No underlines, no white box) */
+        .footer-logo { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 1.5rem; text-decoration: none !important; }
+        .footer-logo img { height: 60px; object-fit: contain; mix-blend-mode: multiply; }
+        .footer-logo span { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--text-dark); text-decoration: none !important; }
         
         .footer-socials { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2.5rem; }
         .footer-socials a { 
@@ -247,7 +246,7 @@
             .hero-glass-card h1 { font-size: 2.8rem; }
             .collections-grid { grid-template-columns: 1fr; gap: 2rem; }
             .order-grid { grid-template-columns: 1fr; gap: 3rem; }
-            .step-item:not(:last-child)::after { display: none; } /* Hide connecting line on mobile */
+            .step-item:not(:last-child)::after { display: none; } 
         }
     </style>
 </head>
@@ -295,13 +294,13 @@
             <span class="tagline">Our Story</span>
             <h2>Hand-Crafted in Paradise SC</h2>
             
-            <p class="story-text">We bring you customised, unique crafting gifts hand-made with ❤️ in Seychelles. Founded by <strong>Christy Esparon</strong>, Pretty Dazzle is a celebration of local artistry and the pure joy of giving. What began as a personal passion for detailed crafting has blossomed into a dedicated gifting service.</p>
+            <p class="story-text">We bring you customised, unique crafting gifts hand-made with ❤️ in Seychelles. Founded by <strong>Christie Esparon</strong>, Pretty Dazzle is a celebration of local artistry and the pure joy of giving. What began as a personal passion for detailed crafting has blossomed into a dedicated gifting service.</p>
             
             <p class="story-text">Quality and presentation are at the core of what we do. We source beautiful materials, assemble each piece with precision, and package everything with the signature elegance that defines the Pretty Dazzle experience. When you choose us, you are not just purchasing a gift; you are investing in a memory.</p>
 
             <div style="margin-top: 2rem;">
                 <a href="https://www.linkedin.com/in/christy-esparon-375869164" target="_blank" class="btn-dynamic" style="padding: 0.8rem 2rem; font-size: 0.85rem;">
-                    <i class="fa-brands fa-linkedin"></i> Connect with Christy
+                    <i class="fa-brands fa-linkedin"></i> Connect with Christie
                 </a>
             </div>
         </div>
@@ -422,7 +421,6 @@
     </footer>
 
     <script>
-        // Loader
         window.addEventListener("load", () => {
             setTimeout(() => {
                 document.getElementById("loader").style.opacity = "0";
@@ -430,7 +428,6 @@
             }, 800);
         });
 
-        // Navbar Blur & Shadow on Scroll
         window.addEventListener("scroll", () => {
             const navbar = document.getElementById("navbar");
             if (window.scrollY > 50) {
@@ -440,7 +437,6 @@
             }
         });
 
-        // Scroll Reveal Animation Engine (Like Aqua Smart)
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -453,9 +449,8 @@
             }
         }
         window.addEventListener("scroll", reveal);
-        reveal(); // Trigger on load
+        reveal(); 
 
-        // Mobile Menu
         const menuToggle = document.querySelector('.menu-toggle');
         const navLinks = document.querySelector('.nav-links');
         
