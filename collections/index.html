@@ -1,369 +1,338 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Collections | Pretty Dazzle</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Collections | Pretty Dazzle</title>
+  
+  <link rel="icon" href="https://i.ibb.co/YMFRf1x/Chat-GPT-Image-Apr-29-2026-06-12-57-PM.png" />
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { 
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            pd: {
+              blush: '#fff1f2',   /* Soft pink background */
+              rose: '#e11d48',    /* Vibrant pink/rose for buttons */
+              roseDark: '#be123c',
+              dark: '#1c1917',    /* Soft black for elegant text */
+              lines: '#fce7f3'    /* Very soft pink border lines */
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { background-color: #ffffff; color: #1c1917; }
+    body.loading { overflow: hidden; height: 100vh; }
     
-    <link rel="icon" href="https://i.ibb.co/8DQxf01L/IMG-20260213-WA0007-removebg-preview.png" type="image/png">
+    /* Loading Screen */
+    #loading-screen { transition: opacity 0.8s ease-out, visibility 0.8s; }
+    .pulse-logo { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.95); } }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #fff1f2; }
+    ::-webkit-scrollbar-thumb { background: #fda4af; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #e11d48; }
+
+    /* Nav Hover Links */
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: ''; position: absolute; width: 100%; transform: scaleX(0); height: 2px;
+      bottom: -4px; left: 0; background-color: #e11d48; transform-origin: bottom right; transition: transform 0.3s ease-out;
+    }
+    .nav-link:hover::after { transform: scaleX(1); transform-origin: bottom left; }
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <style>
-        /* --- ADVANCED UI VARIABLES --- */
-        :root {
-            --bg-pink: #fff5f7; 
-            --card-white: rgba(255, 255, 255, 0.85);
-            --pure-white: #ffffff;
-            --accent-light: #ffb6c1; 
-            --accent-dark: #d87093; 
-            --text-dark: #2d2a2a; 
-            --text-muted: #6e6769;
-            --glass-border: rgba(255, 255, 255, 0.4);
-            --glow-shadow: 0 15px 35px rgba(216, 112, 147, 0.15);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-pink);
-            color: var(--text-dark);
-            line-height: 1.8;
-            overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; color: var(--text-dark); }
-
-        /* --- MODERN LOADER --- */
-        #loader {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background-color: var(--bg-pink); display: flex; justify-content: center; align-items: center;
-            z-index: 9999; transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
-        }
-        .loader-ring {
-            position: relative; width: 120px; height: 120px;
-            display: flex; justify-content: center; align-items: center;
-        }
-        .loader-ring::before {
-            content: ''; position: absolute; width: 100%; height: 100%;
-            border-radius: 50%; border: 3px solid transparent;
-            border-top-color: var(--accent-dark); border-right-color: var(--accent-light);
-            animation: spin 1.5s linear infinite;
-        }
-        .loader-logo { width: 70px; object-fit: contain; animation: pulse 2s infinite; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.05); opacity: 0.8; } }
-
-        /* --- GLASSMORPHISM NAVBAR --- */
-        .navbar {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 1rem 5%; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            position: fixed; width: 100%; top: 0; z-index: 1000; 
-            border-bottom: 1px solid var(--glass-border); transition: all 0.4s ease;
-        }
-        .navbar.scrolled { background: rgba(255, 255, 255, 0.95); box-shadow: var(--glow-shadow); }
-
-        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .logo img { height: 50px; object-fit: contain; transition: transform 0.3s; }
-        .logo:hover img { transform: scale(1.1) rotate(5deg); }
-        .logo span { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--text-dark); letter-spacing: 0.5px;}
-
-        .nav-links { list-style: none; display: flex; gap: 2.5rem; align-items: center; }
-        .nav-links a { 
-            color: var(--text-dark); text-decoration: none; 
-            font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px;
-            transition: color 0.3s; position: relative;
-        }
-        .nav-links a::after {
-            content: ''; position: absolute; width: 0; height: 2px; 
-            bottom: -5px; left: 0; background: linear-gradient(90deg, var(--accent-light), var(--accent-dark)); 
-            transition: width 0.3s ease; border-radius: 2px;
-        }
-        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-
-        .nav-socials { display: flex; gap: 1.2rem; }
-        .nav-socials a { color: var(--text-dark); font-size: 1.2rem; transition: all 0.3s; }
-        .nav-socials a:hover { color: var(--accent-dark); transform: translateY(-2px); }
-
-        /* --- PAGE HEADER --- */
-        .page-header {
-            padding: 10rem 5% 4rem; text-align: center;
-            background: linear-gradient(180deg, var(--pure-white) 0%, var(--bg-pink) 100%);
-        }
-        .tagline { font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 4px; font-size: 0.8rem; color: var(--accent-dark); margin-bottom: 1rem; display: block; font-weight: 700; animation: fadeInUp 1s ease-out;}
-        .page-header h1 { font-size: 3.5rem; margin-bottom: 1rem; animation: fadeInUp 1s ease-out 0.2s both; }
-        .page-header p { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto; animation: fadeInUp 1s ease-out 0.4s both;}
-
-        /* --- SCROLL REVEAL ENGINE --- */
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        /* --- MODERN COLLECTIONS GRID --- */
-        .collections-container { padding: 2rem 5% 8rem; flex-grow: 1; background-color: var(--bg-pink); }
-        .collections-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; max-width: 1200px; margin: 0 auto; }
-        
-        .tech-card {
-            background: var(--pure-white); padding: 3.5rem 2rem; border-radius: 20px;
-            text-align: center; border: 1px solid rgba(255, 182, 193, 0.2);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative; display: flex; flex-direction: column; align-items: center;
-            z-index: 1; overflow: hidden;
-        }
-        
-        .tech-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,182,193,0.05) 100%);
-            z-index: -1; opacity: 0; transition: opacity 0.4s ease;
-        }
-
-        .tech-card:hover { transform: translateY(-12px); box-shadow: var(--glow-shadow); border-color: rgba(216, 112, 147, 0.3); }
-        .tech-card:hover::before { opacity: 1; }
-
-        .icon-wrapper {
-            width: 80px; height: 80px; border-radius: 50%;
-            background: var(--bg-pink); display: flex; justify-content: center; align-items: center;
-            font-size: 2rem; color: var(--accent-dark); margin-bottom: 1.5rem;
-            transition: all 0.4s ease; box-shadow: inset 0 0 0 2px rgba(216, 112, 147, 0.1);
-        }
-        .tech-card:hover .icon-wrapper { background: var(--accent-dark); color: var(--pure-white); transform: scale(1.1); box-shadow: 0 10px 20px rgba(216, 112, 147, 0.3); }
-
-        .tech-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
-        .tech-card p { color: var(--text-muted); margin-bottom: 2.5rem; font-size: 0.95rem; flex-grow: 1; }
-
-        .btn-dynamic {
-            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            background: linear-gradient(45deg, var(--accent-dark), var(--accent-light), var(--accent-dark));
-            background-size: 200% auto; color: var(--pure-white);
-            padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none;
-            font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
-            transition: 0.5s; box-shadow: 0 5px 15px rgba(216, 112, 147, 0.2); border: none; margin-top: auto;
-        }
-        .tech-card:hover .btn-dynamic { background-position: right center; box-shadow: 0 10px 20px rgba(216, 112, 147, 0.4); }
-
-        /* --- CSS SVG WAVE SEPARATOR --- */
-        .wave-separator {
-            width: 100%; height: 100px; overflow: hidden; line-height: 0;
-            background: var(--pure-white); transform: rotate(180deg); margin-bottom: -1px; margin-top: auto;
-        }
-        .wave-separator svg { display: block; width: 100%; height: 100px; }
-        .wave-separator path { fill: var(--bg-pink); }
-
-        /* --- HIGH-TECH FOOTER --- */
-        .site-footer { background-color: var(--bg-pink); color: var(--text-dark); padding: 4rem 5% 2rem; text-align: center; }
-        .footer-content { max-width: 600px; margin: 0 auto 3rem; }
-        .footer-logo { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 1.5rem; text-decoration: none;}
-        .footer-logo img { height: 60px; object-fit: contain; }
-        .footer-logo span { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--text-dark); }
-        
-        .footer-socials { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2.5rem; }
-        .footer-socials a { 
-            display: flex; align-items: center; justify-content: center; width: 45px; height: 45px;
-            background: var(--pure-white); border-radius: 50%; box-shadow: 0 5px 15px rgba(216, 112, 147, 0.1);
-            color: var(--accent-dark); font-size: 1.2rem; transition: all 0.3s; text-decoration: none;
-        }
-        .footer-socials a:hover { background-color: var(--accent-dark); color: var(--pure-white); transform: translateY(-5px); box-shadow: var(--glow-shadow);}
-
-        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap; }
-        .footer-links a { color: var(--text-dark); text-decoration: none; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; }
-        .footer-links a:hover { color: var(--accent-dark); }
-
-        .footer-bottom { border-top: 1px solid rgba(216, 112, 147, 0.2); padding-top: 2rem; font-size: 0.85rem; color: var(--text-muted); }
-        .agency-link { display: inline-flex; align-items: center; gap: 6px; color: var(--text-dark); text-decoration: none; font-weight: 700; margin-top: 10px; transition: color 0.3s;}
-        .agency-link:hover { color: var(--accent-dark); }
-
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* MOBILE RESPONSIVE */
-        .menu-toggle { display: none; font-size: 1.5rem; color: var(--text-dark); cursor: pointer; }
-        @media (max-width: 900px) {
-            .nav-links, .nav-socials { display: none; }
-            .menu-toggle { display: block; }
-            .collections-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-        }
-        @media (max-width: 600px) {
-            .collections-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+    /* Soft Image Shadows */
+    .editorial-img {
+        box-shadow: 0 20px 40px -15px rgba(225, 29, 72, 0.15);
+    }
+  </style>
 </head>
-<body>
+<body class="font-sans flex flex-col min-h-screen loading">
 
-    <div id="loader">
-        <div class="loader-ring">
-            <img src="https://i.ibb.co/8DQxf01L/IMG-20260213-WA0007-removebg-preview.png" alt="Pretty Dazzle" class="loader-logo">
-        </div>
+  <div id="loading-screen" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-pd-blush">
+    <img src="https://i.ibb.co/YMFRf1x/Chat-GPT-Image-Apr-29-2026-06-12-57-PM.png" alt="Pretty Dazzle" class="h-24 md:h-32 pulse-logo mb-6 object-contain">
+    <p class="font-serif italic text-pd-rose text-lg tracking-widest">Gathering the collections...</p>
+  </div>
+
+  <nav class="bg-white/95 backdrop-blur-md py-4 px-6 md:px-12 flex justify-between items-center shadow-sm sticky top-0 z-50">
+    <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-600 flex-1">
+      <a href="/" class="nav-link hover:text-pd-rose transition-colors">Home</a>
+      <a href="/collections" class="text-pd-rose font-semibold border-b-2 border-pd-rose pb-1">Collections</a>
+      <a href="/about" class="nav-link hover:text-pd-rose transition-colors">About Us</a>
     </div>
 
-    <nav class="navbar" id="navbar">
-        <a href="/" class="logo">
-            <img src="https://i.ibb.co/8DQxf01L/IMG-20260213-WA0007-removebg-preview.png" alt="Pretty Dazzle Logo">
-            <span>Pretty Dazzle</span>
-        </a>
-        
-        <div class="menu-toggle"><i class="fa-solid fa-bars"></i></div>
-        
-        <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/collections/" class="active">Collections</a></li>
-            <li><a href="/terms/">Terms & Policies</a></li>
-        </ul>
+    <a href="/" class="flex justify-center flex-1">
+      <img src="https://i.ibb.co/YMFRf1x/Chat-GPT-Image-Apr-29-2026-06-12-57-PM.png" alt="Pretty Dazzle" class="h-12 object-contain transition-transform hover:scale-105">
+    </a>
+    
+    <button id="mobile-menu-btn" class="md:hidden text-pd-dark hover:text-pd-rose transition-colors text-2xl flex-1 text-right">
+      <i class="fa-solid fa-bars"></i>
+    </button>
 
-        <div class="nav-socials">
-            <a href="https://www.instagram.com/prettydazzled?utm_source=qr&igsh=MWRlY29wcWdhY3d3eQ==" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://wa.me/2482569697" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-        </div>
-    </nav>
+    <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-600 flex-1 justify-end items-center">
+      <a href="/terms" class="nav-link hover:text-pd-rose transition-colors">Terms</a>
+      <a href="https://wa.me/2482569697" target="_blank" class="bg-pd-rose hover:bg-pd-roseDark text-white px-6 py-2.5 rounded-full transition-all shadow-md flex items-center transform hover:-translate-y-0.5">
+        <i class="fa-brands fa-whatsapp text-lg mr-2"></i> Message Us
+      </a>
+    </div>
+  </nav>
 
-    <header class="page-header">
-        <span class="tagline">Catalog</span>
-        <h1>Our Collections</h1>
-        <p>Browse our signature creations. Every piece is hand-crafted with precision and designed to bring a dazzling smile to your loved ones.</p>
+  <div id="mobile-menu" class="hidden bg-white border-b border-gray-100 px-6 py-8 flex flex-col space-y-6 text-center text-pd-dark text-lg font-medium md:hidden absolute w-full z-40 shadow-2xl top-[72px]">
+    <a href="/" class="hover:text-pd-rose transition-colors">Home</a>
+    <a href="/collections" class="text-pd-rose">Collections</a>
+    <a href="/about" class="hover:text-pd-rose transition-colors">About Us</a>
+    <a href="/terms" class="hover:text-pd-rose transition-colors">Terms</a>
+    <div class="pt-4">
+      <a href="https://wa.me/2482569697" target="_blank" class="inline-flex bg-pd-rose hover:bg-pd-roseDark text-white px-8 py-3 rounded-full transition-all shadow-md items-center justify-center">
+        <i class="fa-brands fa-whatsapp text-xl mr-2"></i> WhatsApp Us
+      </a>
+    </div>
+  </div>
+
+  <main class="flex-grow w-full flex flex-col items-center">
+    
+    <header class="w-full bg-pd-blush pt-24 pb-20 px-6 text-center border-b border-pd-lines">
+      <div class="max-w-3xl mx-auto" data-aos="fade-up">
+        <p class="text-pd-rose tracking-[0.25em] uppercase text-xs font-bold mb-4">The Dazzle Catalog</p>
+        <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6 text-pd-dark leading-tight">
+          Our Exquisite <span class="italic text-pd-rose font-light">Collections</span>
+        </h1>
+        <p class="text-lg text-gray-600 font-light max-w-2xl mx-auto leading-relaxed">
+          Browse our beautiful categories below. When you find the perfect match for your special occasion, message us directly to begin curating your custom gift.
+        </p>
+      </div>
     </header>
 
-    <main class="collections-container">
-        <div class="collections-grid">
-            
-            <div class="tech-card reveal">
-                <div class="icon-wrapper"><i class="fa-solid fa-gift"></i></div>
-                <h3>Curated Hampers</h3>
-                <p>Luxury gift baskets perfectly tailored to your needs, bursting with premium treats.</p>
-                <a href="https://wa.me/2482569697?text=Hello%20Pretty%20Dazzle!%20I%20am%20interested%20in%20a%20Curated%20Hamper." target="_blank" class="btn-dynamic">Inquire</a>
-            </div>
-
-            <div class="tech-card reveal">
-                <div class="icon-wrapper"><i class="fa-brands fa-pagelines"></i></div>
-                <h3>Eternal Blooms</h3>
-                <p>Stunning artificial flower arrangements designed to maintain their beauty for a lifetime.</p>
-                <a href="https://wa.me/2482569697?text=Hello%20Pretty%20Dazzle!%20I%20am%20interested%20in%20Eternal%20Blooms." target="_blank" class="btn-dynamic">Inquire</a>
-            </div>
-
-            <div class="tech-card reveal">
-                <div class="icon-wrapper"><i class="fa-solid fa-mug-hot"></i></div>
-                <h3>Personal Tumblers</h3>
-                <p>Fun, themed, and custom-designed drinkware crafted specifically for you.</p>
-                <a href="https://wa.me/2482569697?text=Hello%20Pretty%20Dazzle!%20I%20am%20interested%20in%20a%20Personalized%20Tumbler." target="_blank" class="btn-dynamic">Inquire</a>
-            </div>
-
-            <div class="tech-card reveal">
-                <div class="icon-wrapper"><i class="fa-solid fa-wine-glass"></i></div>
-                <h3>Gifts for Him</h3>
-                <p>Sophisticated hampers expertly curated with fine wine, chocolates, and elevated aesthetics.</p>
-                <a href="https://wa.me/2482569697?text=Hello%20Pretty%20Dazzle!%20I%20am%20interested%20in%20Gifts%20for%20Him." target="_blank" class="btn-dynamic">Inquire</a>
-            </div>
-
-            <div class="tech-card reveal">
-                <div class="icon-wrapper"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-                <h3>Specialty Bouquets</h3>
-                <p>Imaginative designs featuring delicate dolls, custom decor, and striking visuals.</p>
-                <a href="https://wa.me/2482569697?text=Hello%20Pretty%20Dazzle!%20I%20am%20interested%20in%20a%20Specialty%20Bouquet." target="_blank" class="btn-dynamic">Inquire</a>
-            </div>
-
-            <div class="tech-card reveal">
-                <div class="icon-wrapper"><i class="fa-solid fa-box-open"></i></div>
-                <h3>Themed Gift Sets</h3>
-                <p>Beautifully coordinated, matching sets perfect for milestone birthdays and celebrations.</p>
-                <a href="https://wa.me/2482569697?text=Hello%20Pretty%20Dazzle!%20I%20am%20interested%20in%20a%20Themed%20Gift%20Set." target="_blank" class="btn-dynamic">Inquire</a>
-            </div>
-
-        </div>
-    </main>
-
-    <div class="wave-separator">
-        <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
-            <path d="M0,128L48,144C96,160,192,192,288,186.7C384,181,480,139,576,122.7C672,107,768,117,864,133.3C960,149,1056,171,1152,165.3C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-        </svg>
-    </div>
-
-    <footer class="site-footer">
-        <div class="footer-content">
-            <a href="/" class="footer-logo">
-                <img src="https://i.ibb.co/8DQxf01L/IMG-20260213-WA0007-removebg-preview.png" alt="Pretty Dazzle Logo">
-                <span>Pretty Dazzle</span>
-            </a>
-            <p>Elevating ordinary days into extraordinary moments. Hand-crafted in Seychelles.</p>
-            
-            <div class="footer-socials">
-                <a href="https://www.instagram.com/prettydazzled?utm_source=qr&igsh=MWRlY29wcWdhY3d3eQ==" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@pretty_dazzled?_r=1&_t=ZS-93tGPsqaVnR" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="https://www.facebook.com/share/1DMy9XTiXC/" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://wa.me/2482569697" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-                <a href="mailto:marushaestra@gmail.com" title="Email"><i class="fa-regular fa-envelope"></i></a>
-            </div>
-
-            <div class="footer-links">
-                <a href="/">Home</a>
-                <a href="/collections/">Collections</a>
-                <a href="/terms/">Terms & Policies</a>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            &copy; 2026 Pretty Dazzle. All rights reserved.
-            <br>
-            <a href="https://bluewave-digital.tylernicholasgroup.com" target="_blank" class="agency-link">
-                <i class="fa-solid fa-microchip"></i> Engineered by BlueWave Digital
-            </a>
-        </div>
-    </footer>
-
-    <script>
-        // Loader
-        window.addEventListener("load", () => {
-            setTimeout(() => {
-                document.getElementById("loader").style.opacity = "0";
-                setTimeout(() => document.getElementById("loader").style.visibility = "hidden", 600);
-            }, 800);
-        });
-
-        // Navbar Blur & Shadow on Scroll
-        window.addEventListener("scroll", () => {
-            const navbar = document.getElementById("navbar");
-            if (window.scrollY > 50) {
-                navbar.classList.add("scrolled");
-            } else {
-                navbar.classList.remove("scrolled");
-            }
-        });
-
-        // Scroll Reveal Animation Engine
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                }
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        reveal(); // Trigger on load
-
-        // Mobile Menu
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
+    <section class="w-full bg-white py-16 md:py-24">
+      <div class="max-w-6xl mx-auto px-6 flex flex-col gap-24 md:gap-32">
         
-        menuToggle.addEventListener('click', () => {
-            if (navLinks.style.display === 'flex') {
-                navLinks.style.display = 'none';
-            } else {
-                navLinks.style.display = 'flex';
-                navLinks.style.flexDirection = 'column';
-                navLinks.style.position = 'absolute';
-                navLinks.style.top = '100%';
-                navLinks.style.left = '0';
-                navLinks.style.width = '100%';
-                navLinks.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
-                navLinks.style.padding = '2rem 0';
-                navLinks.style.boxShadow = '0 15px 35px rgba(216, 112, 147, 0.15)';
-            }
-        });
-    </script>
+        <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+            <div class="w-full md:w-1/2" data-aos="fade-right">
+                <div class="rounded-3xl overflow-hidden editorial-img aspect-[4/5] md:aspect-square relative group">
+                    <img src="https://i.ibb.co/yccXxQRs/IMG-20260213-WA0054.jpg" alt="Curated Hampers" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 flex flex-col justify-center text-center md:text-left" data-aos="fade-left">
+                <span class="text-pd-rose tracking-[0.2em] uppercase text-xs font-bold mb-3">01. Signature Offering</span>
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-pd-dark mb-6">Curated Hampers</h2>
+                <p class="text-gray-600 text-lg leading-relaxed font-light mb-8 max-w-md mx-auto md:mx-0">
+                    Luxury gift baskets perfectly tailored to your needs, bursting with premium treats. Each hamper is carefully assembled to create a stunning visual presentation and a delightful unboxing experience.
+                </p>
+                <div>
+                    <a href="https://wa.me/2482569697" target="_blank" class="inline-flex bg-pd-rose hover:bg-pd-roseDark text-white font-semibold py-3.5 px-8 rounded-full transition-all shadow-md items-center">
+                        <i class="fa-brands fa-whatsapp text-xl mr-2"></i> Inquire About Hampers
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row-reverse items-center gap-10 md:gap-16">
+            <div class="w-full md:w-1/2" data-aos="fade-left">
+                <div class="rounded-3xl overflow-hidden editorial-img aspect-[4/5] md:aspect-square relative group">
+                    <img src="https://i.ibb.co/QFpyDHS0/IMG-20260213-WA0029.jpg" alt="Eternal Blooms" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 flex flex-col justify-center text-center md:text-left" data-aos="fade-right">
+                <span class="text-pd-rose tracking-[0.2em] uppercase text-xs font-bold mb-3">02. Lasting Beauty</span>
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-pd-dark mb-6">Eternal Blooms</h2>
+                <p class="text-gray-600 text-lg leading-relaxed font-light mb-8 max-w-md mx-auto md:mx-0">
+                    Stunning artificial flower arrangements meticulously designed to maintain their beauty for a lifetime. Perfect for home decor, lasting memories, and grand romantic gestures that never fade.
+                </p>
+                <div>
+                    <a href="https://wa.me/2482569697" target="_blank" class="inline-flex bg-pd-rose hover:bg-pd-roseDark text-white font-semibold py-3.5 px-8 rounded-full transition-all shadow-md items-center">
+                        <i class="fa-brands fa-whatsapp text-xl mr-2"></i> Inquire About Blooms
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+            <div class="w-full md:w-1/2" data-aos="fade-right">
+                <div class="rounded-3xl overflow-hidden editorial-img aspect-[4/5] md:aspect-square relative group">
+                    <img src="https://i.ibb.co/v6QHmq3s/IMG-20260213-WA0040.jpg" alt="Personal Tumblers" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 flex flex-col justify-center text-center md:text-left" data-aos="fade-left">
+                <span class="text-pd-rose tracking-[0.2em] uppercase text-xs font-bold mb-3">03. Custom Touches</span>
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-pd-dark mb-6">Personal Tumblers</h2>
+                <p class="text-gray-600 text-lg leading-relaxed font-light mb-8 max-w-md mx-auto md:mx-0">
+                    Fun, themed, and completely custom-designed drinkware crafted specifically for you or your loved ones. A practical, beautiful daily reminder of your dazzling moments.
+                </p>
+                <div>
+                    <a href="https://wa.me/2482569697" target="_blank" class="inline-flex bg-pd-rose hover:bg-pd-roseDark text-white font-semibold py-3.5 px-8 rounded-full transition-all shadow-md items-center">
+                        <i class="fa-brands fa-whatsapp text-xl mr-2"></i> Design a Tumbler
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row-reverse items-center gap-10 md:gap-16">
+            <div class="w-full md:w-1/2" data-aos="fade-left">
+                <div class="rounded-3xl overflow-hidden editorial-img aspect-[4/5] md:aspect-square relative group">
+                    <img src="https://i.ibb.co/bghk81d6/IMG-20260213-WA0057.jpg" alt="Gifts for Him" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 flex flex-col justify-center text-center md:text-left" data-aos="fade-right">
+                <span class="text-pd-rose tracking-[0.2em] uppercase text-xs font-bold mb-3">04. Sophisticated Selection</span>
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-pd-dark mb-6">Gifts for Him</h2>
+                <p class="text-gray-600 text-lg leading-relaxed font-light mb-8 max-w-md mx-auto md:mx-0">
+                    Sophisticated hampers expertly curated with fine wine, premium chocolates, and elevated, masculine aesthetics. The perfect way to show appreciation for the men in your life.
+                </p>
+                <div>
+                    <a href="https://wa.me/2482569697" target="_blank" class="inline-flex bg-pd-rose hover:bg-pd-roseDark text-white font-semibold py-3.5 px-8 rounded-full transition-all shadow-md items-center">
+                        <i class="fa-brands fa-whatsapp text-xl mr-2"></i> Curate for Him
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+            <div class="w-full md:w-1/2" data-aos="fade-right">
+                <div class="rounded-3xl overflow-hidden editorial-img aspect-[4/5] md:aspect-square relative group">
+                    <img src="https://i.ibb.co/N85Xb6Y/IMG-20260213-WA0038.jpg" alt="Specialty Bouquets" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 flex flex-col justify-center text-center md:text-left" data-aos="fade-left">
+                <span class="text-pd-rose tracking-[0.2em] uppercase text-xs font-bold mb-3">05. Creative Designs</span>
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-pd-dark mb-6">Specialty Bouquets</h2>
+                <p class="text-gray-600 text-lg leading-relaxed font-light mb-8 max-w-md mx-auto md:mx-0">
+                    Imaginative designs featuring delicate dolls, custom decor elements, and striking visual layouts. These bouquets step outside the box to deliver something truly unique.
+                </p>
+                <div>
+                    <a href="https://wa.me/2482569697" target="_blank" class="inline-flex bg-pd-rose hover:bg-pd-roseDark text-white font-semibold py-3.5 px-8 rounded-full transition-all shadow-md items-center">
+                        <i class="fa-brands fa-whatsapp text-xl mr-2"></i> Inquire About Bouquets
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row-reverse items-center gap-10 md:gap-16">
+            <div class="w-full md:w-1/2" data-aos="fade-left">
+                <div class="rounded-3xl overflow-hidden editorial-img aspect-[4/5] md:aspect-square relative group">
+                    <img src="https://i.ibb.co/KxMNqJwY/IMG-20260213-WA0055.jpg" alt="Themed Gift Sets" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 flex flex-col justify-center text-center md:text-left" data-aos="fade-right">
+                <span class="text-pd-rose tracking-[0.2em] uppercase text-xs font-bold mb-3">06. Perfect Coordination</span>
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-pd-dark mb-6">Themed Gift Sets</h2>
+                <p class="text-gray-600 text-lg leading-relaxed font-light mb-8 max-w-md mx-auto md:mx-0">
+                    Beautifully coordinated matching sets perfect for milestone birthdays, anniversaries, and celebrations. We ensure every element ties together for a flawless presentation.
+                </p>
+                <div>
+                    <a href="https://wa.me/2482569697" target="_blank" class="inline-flex bg-pd-rose hover:bg-pd-roseDark text-white font-semibold py-3.5 px-8 rounded-full transition-all shadow-md items-center">
+                        <i class="fa-brands fa-whatsapp text-xl mr-2"></i> Build a Themed Set
+                    </a>
+                </div>
+            </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="w-full bg-pd-blush py-24 border-t border-pd-lines">
+        <div class="max-w-3xl mx-auto px-6 text-center" data-aos="zoom-in">
+          <i class="fa-brands fa-whatsapp text-4xl text-pd-rose mb-6"></i>
+          <h2 class="font-serif text-3xl md:text-4xl font-bold mb-4 text-pd-dark">
+            Ready to craft your gift?
+          </h2>
+          <p class="text-gray-600 leading-relaxed mb-8 font-light">
+            Whether you know exactly what you want or need some creative guidance, reach out to us on WhatsApp. We are here to make your vision come to life.
+          </p>
+          <a href="https://wa.me/2482569697" target="_blank" class="inline-flex bg-pd-rose hover:bg-pd-roseDark text-white font-semibold px-10 py-4 rounded-full transition-all shadow-lg items-center text-lg">
+            Message Us Now
+          </a>
+        </div>
+      </section>
+
+  </main>
+
+  <footer class="bg-pd-blush pt-16 pb-10 px-6 md:px-12 mt-auto border-t border-pd-lines">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+      
+      <div class="md:col-span-2 text-center md:text-left">
+        <img src="https://i.ibb.co/YMFRf1x/Chat-GPT-Image-Apr-29-2026-06-12-57-PM.png" alt="Pretty Dazzle" class="h-16 mx-auto md:mx-0 mb-6 object-contain">
+        <p class="text-gray-600 text-sm font-light leading-relaxed max-w-sm mx-auto md:mx-0">
+          Curated luxury gifts and eternal floral arrangements beautifully hand-crafted in Mahe, Seychelles. Elevating ordinary days into extraordinary memories.
+        </p>
+      </div>
+
+      <div class="text-center md:text-left">
+        <h4 class="font-serif font-bold text-xl mb-4 text-pd-dark">Explore</h4>
+        <div class="flex flex-col space-y-3 font-light text-gray-600">
+          <a href="/" class="hover:text-pd-rose transition-colors">Home</a>
+          <a href="/collections" class="hover:text-pd-rose transition-colors">Our Collections</a>
+          <a href="/about" class="hover:text-pd-rose transition-colors">About Christie</a>
+          <a href="/terms" class="hover:text-pd-rose transition-colors">Terms & Conditions</a>
+        </div>
+      </div>
+
+      <div class="text-center md:text-left">
+        <h4 class="font-serif font-bold text-xl mb-4 text-pd-dark">Connect</h4>
+        <div class="flex flex-col space-y-3 font-light text-gray-600 mb-6">
+          <a href="mailto:marushaestra@gmail.com" class="hover:text-pd-rose transition-colors">marushaestra@gmail.com</a>
+          <a href="https://wa.me/2482569697" target="_blank" class="hover:text-pd-rose transition-colors">WhatsApp: +248 256 9697</a>
+        </div>
+        
+        <div class="flex justify-center md:justify-start space-x-4">
+          <a href="https://www.instagram.com/prettydazzled?utm_source=qr&igsh=MWRlY29wcWdhY3d3eQ==" target="_blank" class="w-10 h-10 rounded-full bg-white border border-pd-lines flex items-center justify-center text-pd-rose hover:bg-pd-rose hover:text-white hover:scale-110 transition-all shadow-sm">
+            <i class="fa-brands fa-instagram text-lg"></i>
+          </a>
+          <a href="https://www.tiktok.com/@pretty_dazzled?_r=1&_t=ZS-93tGPsqaVnR" target="_blank" class="w-10 h-10 rounded-full bg-white border border-pd-lines flex items-center justify-center text-pd-rose hover:bg-black hover:text-white hover:border-black hover:scale-110 transition-all shadow-sm">
+            <i class="fa-brands fa-tiktok text-lg"></i>
+          </a>
+          <a href="https://www.facebook.com/share/1DMy9XTiXC/" target="_blank" class="w-10 h-10 rounded-full bg-white border border-pd-lines flex items-center justify-center text-pd-rose hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] hover:scale-110 transition-all shadow-sm">
+            <i class="fa-brands fa-facebook-f text-lg"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+    
+    <div class="max-w-6xl mx-auto border-t border-pd-lines pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-light">
+      <p>&copy; <span id="current-year"></span> Pretty Dazzle. All rights reserved.</p>
+      <p class="mt-4 md:mt-0">
+        Made by <a href="https://bluewave-digital.tylernicholasgroup.com/" target="_blank" class="font-semibold text-gray-700 hover:text-pd-rose transition-colors">BlueWave Digital</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // Loading Screen Logic
+    window.addEventListener('load', function() {
+      const loader = document.getElementById('loading-screen');
+      setTimeout(() => {
+        loader.style.opacity = '0';
+        loader.style.visibility = 'hidden';
+        document.body.classList.remove('loading');
+        AOS.init({ duration: 1000, once: true, offset: 40 });
+      }, 800); 
+    });
+
+    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    document.getElementById('current-year').innerText = new Date().getFullYear();
+  </script>
 </body>
 </html>
