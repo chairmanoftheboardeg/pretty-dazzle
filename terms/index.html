@@ -1,114 +1,301 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms & Conditions | Pretty Dazzle</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms & Conditions | Pretty Dazzle</title>
+  
+  <link rel="icon" href="https://i.ibb.co/YMFRf1x/Chat-GPT-Image-Apr-29-2026-06-12-57-PM.png" />
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { 
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            pd: {
+              blush: '#fff1f2',   /* Soft pink background */
+              rose: '#e11d48',    /* Vibrant pink/rose for buttons */
+              roseDark: '#be123c',
+              dark: '#1c1917',    /* Soft black for elegant text */
+              lines: '#fce7f3'    /* Very soft pink border lines */
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { background-color: #ffffff; color: #1c1917; }
+    body.loading { overflow: hidden; height: 100vh; }
+    
+    /* Loading Screen */
+    #loading-screen { transition: opacity 0.8s ease-out, visibility 0.8s; }
+    .pulse-logo { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.95); } }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #fff1f2; }
+    ::-webkit-scrollbar-thumb { background: #fda4af; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #e11d48; }
+
+    /* Nav Hover Links */
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: ''; position: absolute; width: 100%; transform: scaleX(0); height: 2px;
+      bottom: -4px; left: 0; background-color: #e11d48; transform-origin: bottom right; transition: transform 0.3s ease-out;
+    }
+    .nav-link:hover::after { transform: scaleX(1); transform-origin: bottom left; }
+    
+    /* Clean List Formatting */
+    .terms-list li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .terms-list li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: #e11d48;
+    }
+  </style>
 </head>
-<body>
+<body class="font-sans flex flex-col min-h-screen loading">
 
-    <nav class="navbar">
-        <a href="../" class="logo">Pretty Dazzle</a>
-        <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="nav-links">
-            <a href="../">Home</a>
-            <a href="../collections/">Collections</a>
-            <a href="../about/">About</a>
-            <a href="#" class="active">T&Cs</a>
-        </div>
-    </nav>
+  <div id="loading-screen" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-pd-blush">
+    <img src="https://i.ibb.co/YMFRf1x/Chat-GPT-Image-Apr-29-2026-06-12-57-PM.png" alt="Pretty Dazzle" class="h-24 md:h-32 pulse-logo mb-6 object-contain">
+    <p class="font-serif italic text-pd-rose text-lg tracking-widest">Preparing documents...</p>
+  </div>
 
-    <header class="page-header" style="background-color: var(--pink-light);">
-        <h1>Terms & <span class="cursive" style="color: var(--pink-primary);">Conditions</span></h1>
-        <p>Please read our policies carefully before placing a custom order.</p>
+  <nav class="bg-white/95 backdrop-blur-md py-4 px-6 md:px-12 flex justify-between items-center shadow-sm sticky top-0 z-50">
+    <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-600 flex-1">
+      <a href="/" class="nav-link hover:text-pd-rose transition-colors">Home</a>
+      <a href="/collections" class="nav-link hover:text-pd-rose transition-colors">Collections</a>
+      <a href="/about" class="nav-link hover:text-pd-rose transition-colors">About Us</a>
+    </div>
+
+    <a href="/" class="flex justify-center flex-1">
+      <img src="https://i.ibb.co/YMFRf1x/Chat-GPT-Image-Apr-29-2026-06-12-57-PM.png" alt="Pretty Dazzle" class="h-12 object-contain transition-transform hover:scale-105">
+    </a>
+    
+    <button id="mobile-menu-btn" class="md:hidden text-pd-dark hover:text-pd-rose transition-colors text-2xl flex-1 text-right">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-600 flex-1 justify-end items-center">
+      <a href="/terms" class="text-pd-rose font-semibold border-b-2 border-pd-rose pb-1">Terms</a>
+      <a href="https://wa.me/2482569697" target="_blank" class="bg-pd-rose hover:bg-pd-roseDark text-white px-6 py-2.5 rounded-full transition-all shadow-md flex items-center transform hover:-translate-y-0.5">
+        <i class="fa-brands fa-whatsapp text-lg mr-2"></i> Message Us
+      </a>
+    </div>
+  </nav>
+
+  <div id="mobile-menu" class="hidden bg-white border-b border-gray-100 px-6 py-8 flex flex-col space-y-6 text-center text-pd-dark text-lg font-medium md:hidden absolute w-full z-40 shadow-2xl top-[72px]">
+    <a href="/" class="hover:text-pd-rose transition-colors">Home</a>
+    <a href="/collections" class="hover:text-pd-rose transition-colors">Collections</a>
+    <a href="/about" class="hover:text-pd-rose transition-colors">About Us</a>
+    <a href="/terms" class="text-pd-rose">Terms</a>
+    <div class="pt-4">
+      <a href="https://wa.me/2482569697" target="_blank" class="inline-flex bg-pd-rose hover:bg-pd-roseDark text-white px-8 py-3 rounded-full transition-all shadow-md items-center justify-center">
+        <i class="fa-brands fa-whatsapp text-xl mr-2"></i> WhatsApp Us
+      </a>
+    </div>
+  </div>
+
+  <main class="flex-grow w-full flex flex-col items-center">
+    
+    <header class="w-full bg-pd-blush pt-24 pb-20 px-6 text-center border-b border-pd-lines">
+      <div class="max-w-3xl mx-auto" data-aos="fade-up">
+        <p class="text-pd-rose tracking-[0.25em] uppercase text-xs font-bold mb-4">Client Policies</p>
+        <h1 class="text-4xl md:text-5xl font-serif font-bold mb-6 text-pd-dark leading-tight">
+          Terms & <span class="italic text-pd-rose font-light">Conditions</span>
+        </h1>
+        <p class="text-lg text-gray-600 font-light max-w-xl mx-auto leading-relaxed">
+          Please read our operational policies carefully before placing a custom order with Pretty Dazzle.
+        </p>
+      </div>
     </header>
 
-    <section class="page-container terms-container">
-        <div class="term-block">
-            <h3>Orders</h3>
-            <ul>
-                <li>Please order at least 2-3 days in advance.</li>
-                <li>Custom orders must be confirmed by our team.</li>
-                <li>Full payment is required upon delivery.</li>
+    <section class="w-full bg-white py-24">
+      <div class="max-w-4xl mx-auto px-6" data-aos="fade-up" data-aos-delay="100">
+        
+        <div class="space-y-16">
+          
+          <div>
+            <h2 class="font-serif text-3xl text-pd-dark mb-6 border-b border-pd-lines pb-4">1. Order Placement & Timelines</h2>
+            <p class="text-gray-600 font-light leading-relaxed mb-4">
+              Due to the highly customized nature of our gifts and arrangements, all inquiries are processed individually via WhatsApp or email. To ensure the highest quality of craftsmanship, we strictly enforce the following timelines:
+            </p>
+            <ul class="text-gray-600 font-light text-sm space-y-2 terms-list pl-2">
+              <li>Orders must be placed a minimum of <strong class="text-pd-dark">2 to 3 days in advance</strong> of your required delivery date.</li>
+              <li>Placing an inquiry does not constitute a confirmed order. Custom orders are only considered active once officially confirmed by a member of the Pretty Dazzle team.</li>
+              <li>We reserve the right to decline orders if they fall outside our production capacity or requested timeframes.</li>
             </ul>
-        </div>
-        <div class="term-block">
-            <h3>Payments</h3>
-            <ul>
-                <li>Full payment is due upon delivery.</li>
-                <li>We accept payments via Bank Transfer (MCB), Cash, or POS Machine.</li>
+          </div>
+
+          <div>
+            <h2 class="font-serif text-3xl text-pd-dark mb-6 border-b border-pd-lines pb-4">2. Payment Terms</h2>
+            <p class="text-gray-600 font-light leading-relaxed mb-4">
+              We strive to make the transaction process as seamless as possible. Payment obligations are as follows:
+            </p>
+            <ul class="text-gray-600 font-light text-sm space-y-2 terms-list pl-2">
+              <li><strong class="text-pd-dark">Full payment is strictly required upon delivery</strong> of the item.</li>
+              <li>We happily accept payments via Bank Transfer (MCB), Cash, or through our POS Machine.</li>
+              <li>If paying via Bank Transfer, proof of transaction must be provided to the delivery personnel upon receipt of the item.</li>
             </ul>
-        </div>
-        <div class="term-block">
-            <h3>Cancellations & Refunds</h3>
-            <ul>
-                <li>No refunds will be issued if canceled within 24 hours of the delivery date.</li>
-                <li>Refunds are only provided in the event of an error on our part.</li>
+          </div>
+
+          <div>
+            <h2 class="font-serif text-3xl text-pd-dark mb-6 border-b border-pd-lines pb-4">3. Cancellations & Refunds</h2>
+            <p class="text-gray-600 font-light leading-relaxed mb-4">
+              Because our creations involve perishable items and highly customized elements specifically curated for you, our cancellation policy is firm:
+            </p>
+            <ul class="text-gray-600 font-light text-sm space-y-2 terms-list pl-2">
+              <li>Cancellations must be communicated to us at the earliest possible convenience.</li>
+              <li><strong class="text-pd-rose">No refunds or waiving of fees</strong> will be issued if an order is canceled within 24 hours of the scheduled delivery date, as materials and labor have already been committed.</li>
+              <li>Refunds or replacements are exclusively provided in the event of an error or severe structural defect strictly on the part of Pretty Dazzle.</li>
             </ul>
-        </div>
-        <div class="term-block">
-            <h3>Custom Hampers</h3>
-            <ul>
-                <li>Final designs may vary slightly depending on material availability.</li>
-                <li>The chosen theme and overall value will always be maintained.</li>
-                <li>No changes can be made after the design has been approved.</li>
+          </div>
+
+          <div>
+            <h2 class="font-serif text-3xl text-pd-dark mb-6 border-b border-pd-lines pb-4">4. Custom Designs & Substitutions</h2>
+            <p class="text-gray-600 font-light leading-relaxed mb-4">
+              We pride ourselves on our aesthetic vision. When you commission Pretty Dazzle, you are entrusting us with the creative execution of your gift.
+            </p>
+            <ul class="text-gray-600 font-light text-sm space-y-2 terms-list pl-2">
+              <li>Final designs may vary slightly from reference photos depending on current seasonal and material availability in Seychelles.</li>
+              <li>If a specific item (such as a brand of chocolate or a specific flower shade) is unavailable, we reserve the right to substitute it with an item of equal or greater value. The chosen theme and overall aesthetic will <strong class="text-pd-dark">always</strong> be maintained.</li>
+              <li>Once a custom design has been agreed upon and production has commenced, no structural or thematic changes can be made.</li>
             </ul>
-        </div>
-        <div class="term-block">
-            <h3>Delivery</h3>
-            <ul>
-                <li>Delivery fees are calculated based on your location in Mahe.</li>
-                <li>We require a correct and complete delivery address.</li>
-                <li>We are not responsible for any damages to the product after successful delivery.</li>
+          </div>
+
+          <div>
+            <h2 class="font-serif text-3xl text-pd-dark mb-6 border-b border-pd-lines pb-4">5. Delivery Logistics</h2>
+            <p class="text-gray-600 font-light leading-relaxed mb-4">
+              We handle the logistics of getting your fragile items to you safely across the island of Mahe.
+            </p>
+            <ul class="text-gray-600 font-light text-sm space-y-2 terms-list pl-2">
+              <li>Delivery fees are calculated based on your specific location/district in Mahe and will be communicated to you during the order confirmation process.</li>
+              <li>Clients are responsible for providing a correct, complete, and accessible delivery address.</li>
+              <li>Once the product has been successfully handed over to the client or the designated recipient, <strong class="text-pd-dark">Pretty Dazzle is no longer responsible or liable for any damages</strong> that occur thereafter.</li>
             </ul>
-        </div>
-        <div class="term-block">
-            <h3>Product Care</h3>
-            <ul>
-                <li>Keep chocolates refrigerated immediately upon receipt.</li>
-                <li>Store artificial flowers away from direct heat and sunlight.</li>
-                <li>Handle all glass items and tumblers with care.</li>
+          </div>
+
+          <div>
+            <h2 class="font-serif text-3xl text-pd-dark mb-6 border-b border-pd-lines pb-4">6. Product Care & Handling</h2>
+            <p class="text-gray-600 font-light leading-relaxed mb-4">
+              Our arrangements include delicate materials and perishables. To ensure longevity and quality, please adhere to the following care guidelines:
+            </p>
+            <ul class="text-gray-600 font-light text-sm space-y-2 terms-list pl-2">
+              <li><strong class="text-pd-dark">Chocolates & Perishables:</strong> Must be kept refrigerated or in a cool, air-conditioned environment immediately upon receipt to prevent melting or spoilage.</li>
+              <li><strong class="text-pd-dark">Eternal Blooms:</strong> Store artificial flower arrangements away from direct, intense sunlight and heat sources to prevent color fading and structural damage.</li>
+              <li><strong class="text-pd-dark">Drinkware & Glass:</strong> Handle all custom tumblers, glass items, and delicate bouquet decor with extreme care. Hand-washing is strictly recommended for custom drinkware.</li>
             </ul>
+          </div>
+
         </div>
+
+      </div>
     </section>
 
-    <footer>
-        <div class="footer-content">
-            <p>Pretty Dazzle - Turning moments into memories.</p>
-            <div class="social-links" style="margin: 1.5rem 0; display: flex; justify-content: center; gap: 1.5rem;">
-                <a href="https://www.instagram.com/prettydazzled?utm_source=qr&igsh=MWRlY29wcWdhY3d3eQ==" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@pretty_dazzled?_r=1&_t=ZS-93tGPsqaVnR" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="https://www.facebook.com/share/1DMy9XTiXC/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://wa.me/2482569697" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-            </div>
-            <p>&copy; 2026 Pretty Dazzle Seychelles. All Rights Reserved.</p>
-            <div class="group-links">
-                Managed by <a href="https://bluewave-digital.tylernicholasgroup.com" target="_blank">BlueWave Digital</a> | 
-                Member of <a href="https://tylernicholasgroup.com" target="_blank">The Tyler Nicholas Group</a> | 
-                By <a href="https://tyler.tylernicholasgroup.com" target="_blank">Tyler Nicholas</a>
-            </div>
-        </div>
-    </footer>
+    <section class="w-full bg-pd-blush py-20 border-t border-pd-lines text-center">
+      <div class="max-w-2xl mx-auto px-6" data-aos="zoom-in">
+        <h2 class="font-serif text-2xl md:text-3xl font-bold mb-4 text-pd-dark">
+          Questions regarding our policies?
+        </h2>
+        <p class="text-gray-600 font-light mb-8 text-sm">
+          If you need clarification on any of the terms above before placing an order, please do not hesitate to reach out to our team.
+        </p>
+        <a href="mailto:marushaestra@gmail.com" class="inline-flex border border-pd-rose text-pd-rose hover:bg-pd-rose hover:text-white transition-colors font-semibold px-8 py-3 rounded-full text-sm">
+          Contact Support
+        </a>
+      </div>
+    </section>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const hamburger = document.getElementById('hamburger');
-            const navLinks = document.querySelector('.nav-links');
-            if (hamburger) {
-                hamburger.addEventListener('click', () => {
-                    navLinks.classList.toggle('nav-active');
-                    hamburger.classList.toggle('toggle');
-                });
-            }
-        });
-    </script>
+  </main>
+
+  <footer class="bg-pd-blush pt-16 pb-10 px-6 md:px-12 mt-auto border-t border-pd-lines">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+      
+      <div class="md:col-span-2 text-center md:text-left">
+        <img src="https://i.ibb.co/YMFRf1x/Chat-GPT-Image-Apr-29-2026-06-12-57-PM.png" alt="Pretty Dazzle" class="h-16 mx-auto md:mx-0 mb-6 object-contain">
+        <p class="text-gray-600 text-sm font-light leading-relaxed max-w-sm mx-auto md:mx-0">
+          Curated luxury gifts and eternal floral arrangements beautifully hand-crafted in Mahe, Seychelles. Elevating ordinary days into extraordinary memories.
+        </p>
+      </div>
+
+      <div class="text-center md:text-left">
+        <h4 class="font-serif font-bold text-xl mb-4 text-pd-dark">Explore</h4>
+        <div class="flex flex-col space-y-3 font-light text-gray-600">
+          <a href="/" class="hover:text-pd-rose transition-colors">Home</a>
+          <a href="/collections" class="hover:text-pd-rose transition-colors">Our Collections</a>
+          <a href="/about" class="hover:text-pd-rose transition-colors">About Christie</a>
+          <a href="/terms" class="hover:text-pd-rose transition-colors">Terms & Conditions</a>
+        </div>
+      </div>
+
+      <div class="text-center md:text-left">
+        <h4 class="font-serif font-bold text-xl mb-4 text-pd-dark">Connect</h4>
+        <div class="flex flex-col space-y-3 font-light text-gray-600 mb-6">
+          <a href="mailto:marushaestra@gmail.com" class="hover:text-pd-rose transition-colors">marushaestra@gmail.com</a>
+          <a href="https://wa.me/2482569697" target="_blank" class="hover:text-pd-rose transition-colors">WhatsApp: +248 256 9697</a>
+        </div>
+        
+        <div class="flex justify-center md:justify-start space-x-4">
+          <a href="https://www.instagram.com/prettydazzled?utm_source=qr&igsh=MWRlY29wcWdhY3d3eQ==" target="_blank" class="w-10 h-10 rounded-full bg-white border border-pd-lines flex items-center justify-center text-pd-rose hover:bg-pd-rose hover:text-white hover:scale-110 transition-all shadow-sm">
+            <i class="fa-brands fa-instagram text-lg"></i>
+          </a>
+          <a href="https://www.tiktok.com/@pretty_dazzled?_r=1&_t=ZS-93tGPsqaVnR" target="_blank" class="w-10 h-10 rounded-full bg-white border border-pd-lines flex items-center justify-center text-pd-rose hover:bg-black hover:text-white hover:border-black hover:scale-110 transition-all shadow-sm">
+            <i class="fa-brands fa-tiktok text-lg"></i>
+          </a>
+          <a href="https://www.facebook.com/share/1DMy9XTiXC/" target="_blank" class="w-10 h-10 rounded-full bg-white border border-pd-lines flex items-center justify-center text-pd-rose hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] hover:scale-110 transition-all shadow-sm">
+            <i class="fa-brands fa-facebook-f text-lg"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+    
+    <div class="max-w-6xl mx-auto border-t border-pd-lines pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-light">
+      <p>&copy; <span id="current-year"></span> Pretty Dazzle. All rights reserved.</p>
+      <p class="mt-4 md:mt-0">
+        Made by <a href="https://bluewave-digital.tylernicholasgroup.com/" target="_blank" class="font-semibold text-gray-700 hover:text-pd-rose transition-colors">BlueWave Digital</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // Loading Screen Logic
+    window.addEventListener('load', function() {
+      const loader = document.getElementById('loading-screen');
+      setTimeout(() => {
+        loader.style.opacity = '0';
+        loader.style.visibility = 'hidden';
+        document.body.classList.remove('loading');
+        AOS.init({ duration: 1000, once: true, offset: 40 });
+      }, 800); 
+    });
+
+    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    document.getElementById('current-year').innerText = new Date().getFullYear();
+  </script>
 </body>
 </html>
