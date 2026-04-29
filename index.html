@@ -3,31 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pretty Dazzle | Curated Hampers & Gifts in Seychelles</title>
+  <title>Pretty Dazzle | Curated Hampers & Gifts</title>
+  
+  <link rel="icon" href="https://i.ibb.co/YMFRf1x/Chat-GPT-Image-Apr-29-2026-06-12-57-PM.png" />
   
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: { 
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
-            serif: ['Playfair Display', 'serif'],
+            sans: ['Jost', 'sans-serif'],
+            serif: ['Cormorant Garamond', 'serif'],
           },
           colors: {
             pd: {
-              blush: '#fff1f2',   /* Very soft pink background */
-              rose: '#e11d48',    /* Rose/Red accent for buttons */
-              gold: '#b45309',    /* Elegant gold for accents */
-              dark: '#1c1917',    /* Deep warm gray for text */
-              card: '#ffffff',
+              bg: '#FAF9F8',      /* Warm, very light off-white */
+              text: '#2A2A2A',    /* Soft charcoal, less harsh than pure black */
+              accent: '#D9C5B2',  /* Soft nude/stone color */
+              lines: '#E5E0DB'    /* Delicate border color */
             }
           }
         }
@@ -36,300 +36,348 @@
   </script>
 
   <style>
-    body { background-color: #fff1f2; color: #1c1917; }
+    body { background-color: #FAF9F8; color: #2A2A2A; }
     
-    /* Blurred Hero Background */
-    .hero-container {
-      position: relative;
-      background-color: #1c1917; /* Dark fallback */
-      overflow: hidden;
+    /* Smooth minimal scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #FAF9F8; }
+    ::-webkit-scrollbar-thumb { background: #D9C5B2; }
+    
+    /* Clean CSS Hamburger (No Icons) */
+    .menu-line {
+      display: block;
+      width: 24px;
+      height: 1px;
+      background-color: #2A2A2A;
+      transition: all 0.3s ease;
     }
-    .hero-container::before {
+    .menu-gap { margin-top: 6px; }
+
+    /* Elegant Link Hover */
+    .hover-underline-anim {
+      position: relative;
+      text-decoration: none;
+    }
+    .hover-underline-anim::after {
       content: '';
       position: absolute;
-      top: -10%; left: -10%; right: -10%; bottom: -10%;
-      background: url('https://i.ibb.co/PzrmNKS7/IMG-20260213-WA0014.jpg') center/cover no-repeat;
-      filter: blur(25px); /* Heavy blur */
-      opacity: 0.35; /* Barely visible */
-      z-index: 0;
+      width: 100%;
+      transform: scaleX(0);
+      height: 1px;
+      bottom: -2px;
+      left: 0;
+      background-color: #2A2A2A;
+      transform-origin: bottom right;
+      transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
     }
-    .hero-content {
-      position: relative;
-      z-index: 1;
+    .hover-underline-anim:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
     }
 
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #fff1f2; }
-    ::-webkit-scrollbar-thumb { background: #fda4af; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #e11d48; }
-
-    /* Gallery Hover Effects */
-    .gallery-img { transition: transform 0.5s ease; }
-    .gallery-item:hover .gallery-img { transform: scale(1.05); }
+    /* Image treatments */
+    .img-editorial {
+      filter: contrast(1.05) brightness(0.95);
+      transition: filter 0.5s ease;
+    }
+    .img-editorial:hover {
+      filter: contrast(1) brightness(1);
+    }
   </style>
 </head>
-<body class="font-sans flex flex-col min-h-screen">
+<body class="font-sans flex flex-col min-h-screen font-light">
 
-  <nav class="bg-white/90 backdrop-blur-md py-4 px-6 md:px-12 flex justify-between items-center shadow-sm sticky top-0 z-50">
-    <a href="/" class="flex items-center space-x-2 group">
-      <span class="font-serif font-bold text-2xl tracking-wide text-pd-dark group-hover:text-pd-rose transition-colors">
-        Pretty Dazzle
-      </span>
-    </a>
-    
-    <button id="mobile-menu-btn" class="md:hidden text-pd-dark hover:text-pd-rose transition-colors text-2xl">
-      <i class="fa-solid fa-bars"></i>
-    </button>
-
-    <div class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
-      <a href="/" class="text-pd-rose border-b border-pd-rose pb-1">Home</a>
-      <a href="/collections" class="text-gray-600 hover:text-pd-rose transition-colors">Collections</a>
-      <a href="/about" class="text-gray-600 hover:text-pd-rose transition-colors">About Us</a>
-      <a href="/terms" class="text-gray-600 hover:text-pd-rose transition-colors">Terms</a>
+  <nav class="w-full bg-pd-bg/90 backdrop-blur-md sticky top-0 z-50 border-b border-pd-lines">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-12 py-5 flex justify-between items-center">
       
-      <a href="https://wa.me/2482569697" target="_blank" class="bg-pd-rose hover:bg-rose-700 text-white px-6 py-2 rounded-full transition-colors shadow-md flex items-center">
-        <i class="fa-brands fa-whatsapp text-lg mr-2"></i> Order Now
+      <div class="hidden md:flex space-x-8 text-xs tracking-[0.15em] uppercase">
+        <a href="/collections" class="hover-underline-anim">Collections</a>
+        <a href="/about" class="hover-underline-anim">Our Story</a>
+      </div>
+
+      <a href="/" class="flex flex-col items-center justify-center absolute left-1/2 transform -translate-x-1/2">
+        <img src="https://i.ibb.co/YMFRf1x/Chat-GPT-Image-Apr-29-2026-06-12-57-PM.png" alt="Pretty Dazzle" class="h-12 md:h-16 object-contain">
       </a>
+
+      <div class="hidden md:flex space-x-8 text-xs tracking-[0.15em] uppercase items-center">
+        <a href="/terms" class="hover-underline-anim">Terms</a>
+        <a href="https://wa.me/2482569697" target="_blank" class="border border-pd-text px-6 py-2 hover:bg-pd-text hover:text-pd-bg transition-colors duration-300">
+          Inquire
+        </a>
+      </div>
+
+      <button id="mobile-menu-btn" class="md:hidden flex flex-col justify-center items-end w-8 h-8 z-50 relative">
+        <span class="menu-line"></span>
+        <span class="menu-line menu-gap w-16"></span>
+      </button>
     </div>
   </nav>
 
-  <div id="mobile-menu" class="hidden bg-white border-b border-gray-100 px-6 py-6 flex flex-col space-y-4 text-pd-dark text-base font-medium md:hidden absolute w-full z-40 shadow-xl top-[72px]">
-    <a href="/" class="text-pd-rose">Home</a>
-    <a href="/collections" class="hover:text-pd-rose">Collections</a>
-    <a href="/about" class="hover:text-pd-rose">About Us</a>
-    <a href="/terms" class="hover:text-pd-rose">Terms</a>
-    <a href="https://wa.me/2482569697" target="_blank" class="bg-pd-rose text-white text-center py-3 rounded-full mt-2">
-      <i class="fa-brands fa-whatsapp mr-2"></i> Message Us
-    </a>
+  <div id="mobile-menu" class="hidden bg-pd-bg border-b border-pd-lines px-6 py-10 flex flex-col space-y-6 text-center md:hidden absolute w-full z-40 top-[70px] shadow-2xl">
+    <a href="/" class="font-serif text-2xl italic">Home</a>
+    <a href="/collections" class="font-serif text-2xl italic">Collections</a>
+    <a href="/about" class="font-serif text-2xl italic">Our Story</a>
+    <a href="/terms" class="font-serif text-2xl italic">Terms</a>
+    <div class="pt-6">
+      <a href="https://wa.me/2482569697" target="_blank" class="text-xs tracking-[0.2em] uppercase border-b border-pd-text pb-1">Message via WhatsApp</a>
+    </div>
   </div>
 
-  <main class="flex-grow w-full flex flex-col items-center">
+  <main class="flex-grow w-full flex flex-col">
     
-    <header class="hero-container w-full pt-32 pb-32 flex items-center justify-center px-6 text-center">
-      <div class="hero-content max-w-3xl mx-auto" data-aos="fade-up" data-aos-duration="1000">
-        <p class="text-pd-blush font-medium tracking-[0.2em] uppercase text-xs md:text-sm mb-4">Seychelles Premier Gifting Service</p>
-        <h1 class="text-5xl md:text-7xl font-serif font-bold mb-6 text-white leading-tight drop-shadow-md">
-          Designed for your <br> <span class="italic text-rose-200">Dazzling Moments</span>
+    <header class="w-full max-w-[1400px] mx-auto px-6 md:px-12 pt-12 pb-24 flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
+      <div class="lg:w-1/2 flex flex-col justify-center" data-aos="fade-right" data-aos-duration="1200">
+        <p class="text-xs tracking-[0.3em] uppercase text-gray-500 mb-6">Seychelles' Premier Gifting Studio</p>
+        <h1 class="font-serif text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.1] mb-8 text-pd-text">
+          Designed for your <br><span class="italic text-gray-400">Dazzling Moments.</span>
         </h1>
-        <p class="text-lg text-gray-200 mb-10 font-light max-w-xl mx-auto">
-          Luxury gift baskets, eternal blooms, and custom drinkware. Hand-crafted in Mahe to elevate ordinary days into extraordinary memories.
+        <p class="text-base md:text-lg text-gray-600 leading-relaxed mb-12 max-w-md font-light">
+          Every milestone deserves to be remembered. We hand-craft bespoke luxury gifts, hampers, and floral arrangements to elevate your most cherished occasions across Mahe.
         </p>
-        <div class="flex flex-col sm:flex-row justify-center gap-4">
-          <a href="/collections" class="bg-white text-pd-dark hover:bg-gray-100 font-semibold py-3.5 px-8 rounded-full transition-all shadow-lg">
-            Explore Collections
+        <div>
+          <a href="/collections" class="text-xs tracking-[0.2em] uppercase border-b border-pd-text pb-2 hover:text-gray-500 hover:border-gray-500 transition-colors">
+            Discover Our Collections
           </a>
-          <a href="https://wa.me/2482569697" target="_blank" class="bg-pd-rose hover:bg-rose-700 text-white font-semibold py-3.5 px-8 rounded-full transition-all shadow-lg flex items-center justify-center">
-            <i class="fa-brands fa-whatsapp mr-2"></i> Inquire via WhatsApp
-          </a>
+        </div>
+      </div>
+      <div class="lg:w-1/2 w-full" data-aos="fade-left" data-aos-duration="1200">
+        <div class="w-full h-[60vh] lg:h-[80vh] overflow-hidden">
+          <img src="https://i.ibb.co/XrW46k9V/IMG-20260213-WA0014.jpg" alt="Luxury Bouquet" class="w-full h-full object-cover img-editorial">
         </div>
       </div>
     </header>
 
-    <section class="w-full bg-white py-20 border-b border-gray-100">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="text-center mb-16" data-aos="fade-up">
-          <h2 class="text-3xl md:text-4xl font-serif font-bold text-pd-dark mb-4">How It Works</h2>
-          <div class="w-16 h-1 bg-pd-gold mx-auto opacity-50"></div>
+    <section class="w-full border-y border-pd-lines bg-white py-24">
+      <div class="max-w-[1400px] mx-auto px-6 md:px-12">
+        <div class="text-center mb-20" data-aos="fade-up">
+          <h2 class="font-serif text-4xl md:text-5xl">The Curation Process</h2>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-          <div data-aos="fade-up" data-aos-delay="100">
-            <div class="w-20 h-20 mx-auto bg-pd-blush rounded-full flex items-center justify-center text-pd-rose text-3xl mb-6 shadow-sm">
-              <i class="fa-solid fa-gift"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-2">1. Choose</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">Browse our beautiful categories and find the perfect match for your special occasion.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12">
+          <div data-aos="fade-up" data-aos-delay="100" class="flex flex-col">
+            <span class="font-serif text-5xl text-pd-accent mb-6 italic">01.</span>
+            <h3 class="text-xs tracking-[0.2em] uppercase font-medium mb-4 border-b border-pd-lines pb-4">Curate & Select</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">
+              Browse our editorial collections of hampers, eternal blooms, and themed gifts. Take your time to find the piece that perfectly speaks to your specific occasion and sentiment.
+            </p>
           </div>
-          <div data-aos="fade-up" data-aos-delay="200">
-            <div class="w-20 h-20 mx-auto bg-pd-blush rounded-full flex items-center justify-center text-pd-rose text-3xl mb-6 shadow-sm">
-              <i class="fa-solid fa-mobile-screen"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-2">2. Message Us</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">Reach out on WhatsApp at least 2-3 days in advance to confirm your custom order.</p>
+          <div data-aos="fade-up" data-aos-delay="200" class="flex flex-col">
+            <span class="font-serif text-5xl text-pd-accent mb-6 italic">02.</span>
+            <h3 class="text-xs tracking-[0.2em] uppercase font-medium mb-4 border-b border-pd-lines pb-4">Connect With Us</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">
+              Reach out directly via WhatsApp to finalize your bespoke arrangement. We kindly request a 2-3 day notice to ensure absolute perfection in every detail of your craft.
+            </p>
           </div>
-          <div data-aos="fade-up" data-aos-delay="300">
-            <div class="w-20 h-20 mx-auto bg-pd-blush rounded-full flex items-center justify-center text-pd-rose text-3xl mb-6 shadow-sm">
-              <i class="fa-solid fa-truck-fast"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-2">3. Delivery</h3>
-            <p class="text-gray-600 text-sm leading-relaxed">We carefully hand-craft your gift and deliver it safely directly to your location across Mahe.</p>
+          <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col">
+            <span class="font-serif text-5xl text-pd-accent mb-6 italic">03.</span>
+            <h3 class="text-xs tracking-[0.2em] uppercase font-medium mb-4 border-b border-pd-lines pb-4">The Delivery</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">
+              We carefully finalize your gift and hand-deliver it across Mahe. Our logistics ensure your delicate arrangements arrive flawlessly, ready to dazzle your recipient.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="w-full bg-pd-blush py-24">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-16" data-aos="fade-right">
-          <div>
-            <h2 class="text-3xl md:text-4xl font-serif font-bold text-pd-dark mb-4">Our Collections</h2>
-            <p class="text-gray-600 max-w-lg">Beautifully curated selections tailored to your specific needs. Find the category that perfectly fits your occasion.</p>
-          </div>
-          <a href="/collections" class="hidden md:inline-flex items-center text-pd-rose font-semibold hover:text-rose-800 transition-colors">
-            View All Categories <i class="fa-solid fa-arrow-right ml-2"></i>
-          </a>
-        </div>
+    <section class="w-full py-32 bg-pd-bg">
+      <div class="max-w-[1400px] mx-auto px-6 md:px-12 flex flex-col lg:flex-row gap-20">
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          
-          <div class="bg-white p-8 rounded-2xl shadow-sm border border-rose-50 hover:shadow-md transition-shadow group" data-aos="fade-up" data-aos-delay="100">
-            <i class="fa-solid fa-basket-shopping text-3xl text-pd-gold mb-6 opacity-80"></i>
-            <h3 class="text-xl font-bold text-pd-dark mb-3 group-hover:text-pd-rose transition-colors">Curated Hampers</h3>
-            <p class="text-gray-600 text-sm leading-relaxed mb-6">Luxury gift baskets perfectly tailored to your needs, bursting with premium treats.</p>
-            <a href="https://wa.me/2482569697" target="_blank" class="text-sm font-semibold text-pd-rose uppercase tracking-wider flex items-center">
-              Inquire <i class="fa-brands fa-whatsapp ml-2"></i>
-            </a>
+        <div class="lg:w-2/5 hidden lg:block relative" data-aos="fade-right">
+          <img src="https://i.ibb.co/S4N7WWhN/IMG-20260213-WA0011.jpg" alt="Curated Gifts" class="w-full h-[800px] object-cover img-editorial">
+          <div class="absolute -right-12 bottom-12 bg-white p-8 max-w-xs border border-pd-lines shadow-sm">
+            <p class="font-serif text-2xl italic mb-4">"Elevating the art of giving."</p>
+            <p class="text-xs tracking-[0.1em] text-gray-500 uppercase">— Pretty Dazzle</p>
           </div>
-
-          <div class="bg-white p-8 rounded-2xl shadow-sm border border-rose-50 hover:shadow-md transition-shadow group" data-aos="fade-up" data-aos-delay="200">
-            <i class="fa-solid fa-seedling text-3xl text-pd-gold mb-6 opacity-80"></i>
-            <h3 class="text-xl font-bold text-pd-dark mb-3 group-hover:text-pd-rose transition-colors">Eternal Blooms</h3>
-            <p class="text-gray-600 text-sm leading-relaxed mb-6">Stunning artificial flower arrangements designed to maintain their beauty for a lifetime.</p>
-            <a href="https://wa.me/2482569697" target="_blank" class="text-sm font-semibold text-pd-rose uppercase tracking-wider flex items-center">
-              Inquire <i class="fa-brands fa-whatsapp ml-2"></i>
-            </a>
-          </div>
-
-          <div class="bg-white p-8 rounded-2xl shadow-sm border border-rose-50 hover:shadow-md transition-shadow group" data-aos="fade-up" data-aos-delay="300">
-            <i class="fa-solid fa-mug-hot text-3xl text-pd-gold mb-6 opacity-80"></i>
-            <h3 class="text-xl font-bold text-pd-dark mb-3 group-hover:text-pd-rose transition-colors">Personal Tumblers</h3>
-            <p class="text-gray-600 text-sm leading-relaxed mb-6">Fun, themed, and custom-designed drinkware crafted specifically for you.</p>
-            <a href="https://wa.me/2482569697" target="_blank" class="text-sm font-semibold text-pd-rose uppercase tracking-wider flex items-center">
-              Inquire <i class="fa-brands fa-whatsapp ml-2"></i>
-            </a>
-          </div>
-
-          <div class="bg-white p-8 rounded-2xl shadow-sm border border-rose-50 hover:shadow-md transition-shadow group" data-aos="fade-up" data-aos-delay="400">
-            <i class="fa-solid fa-wine-bottle text-3xl text-pd-gold mb-6 opacity-80"></i>
-            <h3 class="text-xl font-bold text-pd-dark mb-3 group-hover:text-pd-rose transition-colors">Gifts for Him</h3>
-            <p class="text-gray-600 text-sm leading-relaxed mb-6">Sophisticated hampers expertly curated with fine wine, chocolates, and elevated aesthetics.</p>
-            <a href="https://wa.me/2482569697" target="_blank" class="text-sm font-semibold text-pd-rose uppercase tracking-wider flex items-center">
-              Inquire <i class="fa-brands fa-whatsapp ml-2"></i>
-            </a>
-          </div>
-
-          <div class="bg-white p-8 rounded-2xl shadow-sm border border-rose-50 hover:shadow-md transition-shadow group" data-aos="fade-up" data-aos-delay="500">
-            <i class="fa-solid fa-wand-magic-sparkles text-3xl text-pd-gold mb-6 opacity-80"></i>
-            <h3 class="text-xl font-bold text-pd-dark mb-3 group-hover:text-pd-rose transition-colors">Specialty Bouquets</h3>
-            <p class="text-gray-600 text-sm leading-relaxed mb-6">Imaginative designs featuring delicate dolls, custom decor, and striking visuals.</p>
-            <a href="https://wa.me/2482569697" target="_blank" class="text-sm font-semibold text-pd-rose uppercase tracking-wider flex items-center">
-              Inquire <i class="fa-brands fa-whatsapp ml-2"></i>
-            </a>
-          </div>
-
-          <div class="bg-white p-8 rounded-2xl shadow-sm border border-rose-50 hover:shadow-md transition-shadow group" data-aos="fade-up" data-aos-delay="600">
-            <i class="fa-solid fa-box-open text-3xl text-pd-gold mb-6 opacity-80"></i>
-            <h3 class="text-xl font-bold text-pd-dark mb-3 group-hover:text-pd-rose transition-colors">Themed Gift Sets</h3>
-            <p class="text-gray-600 text-sm leading-relaxed mb-6">Beautifully coordinated, matching sets perfect for milestone birthdays and celebrations.</p>
-            <a href="https://wa.me/2482569697" target="_blank" class="text-sm font-semibold text-pd-rose uppercase tracking-wider flex items-center">
-              Inquire <i class="fa-brands fa-whatsapp ml-2"></i>
-            </a>
-          </div>
-
         </div>
-      </div>
-    </section>
 
-    <section class="w-full bg-white py-24 border-b border-gray-100">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="text-center mb-16" data-aos="fade-up">
-          <h2 class="text-3xl md:text-4xl font-serif font-bold text-pd-dark mb-4">The Media Corner</h2>
-          <p class="text-gray-600">A glimpse into our recent creations and happy clients.</p>
-          <div class="w-16 h-1 bg-pd-gold mx-auto opacity-50 mt-6"></div>
-        </div>
-        
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+        <div class="lg:w-3/5 flex flex-col justify-center">
+          <h2 class="font-serif text-4xl md:text-5xl mb-12">Signature Categories</h2>
           
-          <div class="gallery-item relative rounded-xl overflow-hidden shadow-sm col-span-2 row-span-2" data-aos="zoom-in" data-aos-delay="100">
-            <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=800&auto=format&fit=crop" alt="Gallery Image 1" class="gallery-img w-full h-full object-cover">
+          <div class="flex flex-col w-full">
+            
+            <a href="/collections" class="group block py-8 border-t border-pd-lines flex flex-col md:flex-row md:items-center justify-between" data-aos="fade-up">
+              <div class="md:w-1/3 mb-4 md:mb-0">
+                <h3 class="font-serif text-2xl md:text-3xl group-hover:italic transition-all">Curated Hampers</h3>
+              </div>
+              <div class="md:w-1/2">
+                <p class="text-sm text-gray-500 leading-relaxed font-light">Luxury gift baskets perfectly tailored to your needs, bursting with premium treats and elegant aesthetics.</p>
+              </div>
+              <div class="md:w-1/6 text-left md:text-right mt-4 md:mt-0">
+                <span class="text-[10px] tracking-[0.2em] uppercase text-gray-400 group-hover:text-pd-text transition-colors">View</span>
+              </div>
+            </a>
+
+            <a href="/collections" class="group block py-8 border-t border-pd-lines flex flex-col md:flex-row md:items-center justify-between" data-aos="fade-up">
+              <div class="md:w-1/3 mb-4 md:mb-0">
+                <h3 class="font-serif text-2xl md:text-3xl group-hover:italic transition-all">Eternal Blooms</h3>
+              </div>
+              <div class="md:w-1/2">
+                <p class="text-sm text-gray-500 leading-relaxed font-light">Stunning artificial flower arrangements meticulously designed to maintain their beauty for a lifetime.</p>
+              </div>
+              <div class="md:w-1/6 text-left md:text-right mt-4 md:mt-0">
+                <span class="text-[10px] tracking-[0.2em] uppercase text-gray-400 group-hover:text-pd-text transition-colors">View</span>
+              </div>
+            </a>
+
+            <a href="/collections" class="group block py-8 border-t border-pd-lines flex flex-col md:flex-row md:items-center justify-between" data-aos="fade-up">
+              <div class="md:w-1/3 mb-4 md:mb-0">
+                <h3 class="font-serif text-2xl md:text-3xl group-hover:italic transition-all">Personal Tumblers</h3>
+              </div>
+              <div class="md:w-1/2">
+                <p class="text-sm text-gray-500 leading-relaxed font-light">Fun, themed, and completely custom-designed drinkware crafted specifically for your personal style.</p>
+              </div>
+              <div class="md:w-1/6 text-left md:text-right mt-4 md:mt-0">
+                <span class="text-[10px] tracking-[0.2em] uppercase text-gray-400 group-hover:text-pd-text transition-colors">View</span>
+              </div>
+            </a>
+
+            <a href="/collections" class="group block py-8 border-t border-pd-lines flex flex-col md:flex-row md:items-center justify-between" data-aos="fade-up">
+              <div class="md:w-1/3 mb-4 md:mb-0">
+                <h3 class="font-serif text-2xl md:text-3xl group-hover:italic transition-all">Gifts for Him</h3>
+              </div>
+              <div class="md:w-1/2">
+                <p class="text-sm text-gray-500 leading-relaxed font-light">Sophisticated hampers expertly curated with fine items and elevated, masculine aesthetics.</p>
+              </div>
+              <div class="md:w-1/6 text-left md:text-right mt-4 md:mt-0">
+                <span class="text-[10px] tracking-[0.2em] uppercase text-gray-400 group-hover:text-pd-text transition-colors">View</span>
+              </div>
+            </a>
+
+            <a href="/collections" class="group block py-8 border-t border-pd-lines flex flex-col md:flex-row md:items-center justify-between" data-aos="fade-up">
+              <div class="md:w-1/3 mb-4 md:mb-0">
+                <h3 class="font-serif text-2xl md:text-3xl group-hover:italic transition-all">Specialty Bouquets</h3>
+              </div>
+              <div class="md:w-1/2">
+                <p class="text-sm text-gray-500 leading-relaxed font-light">Imaginative designs featuring delicate dolls, custom decor elements, and striking visual layouts.</p>
+              </div>
+              <div class="md:w-1/6 text-left md:text-right mt-4 md:mt-0">
+                <span class="text-[10px] tracking-[0.2em] uppercase text-gray-400 group-hover:text-pd-text transition-colors">View</span>
+              </div>
+            </a>
+
+            <a href="/collections" class="group block py-8 border-y border-pd-lines flex flex-col md:flex-row md:items-center justify-between" data-aos="fade-up">
+              <div class="md:w-1/3 mb-4 md:mb-0">
+                <h3 class="font-serif text-2xl md:text-3xl group-hover:italic transition-all">Themed Sets</h3>
+              </div>
+              <div class="md:w-1/2">
+                <p class="text-sm text-gray-500 leading-relaxed font-light">Beautifully coordinated matching sets, perfectly assembled for milestone birthdays and celebrations.</p>
+              </div>
+              <div class="md:w-1/6 text-left md:text-right mt-4 md:mt-0">
+                <span class="text-[10px] tracking-[0.2em] uppercase text-gray-400 group-hover:text-pd-text transition-colors">View</span>
+              </div>
+            </a>
+
           </div>
           
-          <div class="gallery-item relative rounded-xl overflow-hidden shadow-sm col-span-1 row-span-1" data-aos="zoom-in" data-aos-delay="200">
-            <img src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?q=80&w=400&auto=format&fit=crop" alt="Gallery Image 2" class="gallery-img w-full h-full object-cover">
-          </div>
-          
-          <div class="gallery-item relative rounded-xl overflow-hidden shadow-sm col-span-1 row-span-1" data-aos="zoom-in" data-aos-delay="300">
-            <img src="https://images.unsplash.com/photo-1577905741695-177d6cdce27d?q=80&w=400&auto=format&fit=crop" alt="Gallery Image 3" class="gallery-img w-full h-full object-cover">
-          </div>
-          
-          <div class="gallery-item relative rounded-xl overflow-hidden shadow-sm col-span-2 row-span-1 md:col-span-1 md:row-span-1" data-aos="zoom-in" data-aos-delay="400">
-            <img src="https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?q=80&w=400&auto=format&fit=crop" alt="Gallery Image 4" class="gallery-img w-full h-full object-cover">
-          </div>
-          
-          <div class="gallery-item relative rounded-xl overflow-hidden shadow-sm col-span-2 row-span-1 md:col-span-1 md:row-span-1" data-aos="zoom-in" data-aos-delay="500">
-            <img src="https://images.unsplash.com/photo-1520113412443-4e8c17df209b?q=80&w=400&auto=format&fit=crop" alt="Gallery Image 5" class="gallery-img w-full h-full object-cover">
+          <div class="mt-12">
+            <a href="/collections" class="inline-block text-xs tracking-[0.2em] uppercase border-b border-pd-text pb-2 hover:text-gray-500 hover:border-gray-500 transition-colors">
+              Explore All Collections
+            </a>
           </div>
 
         </div>
       </div>
     </section>
 
-    <section class="w-full bg-pd-blush py-24">
-      <div class="max-w-4xl mx-auto px-6 text-center" data-aos="fade-up">
-        <h2 class="text-3xl md:text-4xl font-serif font-bold text-pd-dark mb-6">A Celebration of Local Artistry</h2>
-        <p class="text-lg text-gray-700 leading-relaxed mb-8">
-          Founded by <a href="https://www.linkedin.com/in/christy-esparon-375869164" target="_blank" class="text-pd-rose font-bold hover:underline">Christie Esparon</a>, Pretty Dazzle began as a personal passion for detailed crafting and has blossomed into a dedicated gifting service. We believe that every gift should tell a unique, personal story, elevating ordinary days into extraordinary moments.
+    <section class="w-full bg-white py-32 border-b border-pd-lines">
+      <div class="max-w-[1400px] mx-auto px-6 md:px-12">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16" data-aos="fade-up">
+          <h2 class="font-serif text-4xl md:text-5xl">The Visual Archive</h2>
+          <p class="text-xs tracking-[0.2em] uppercase text-gray-400 mt-4 md:mt-0">Recent Commissions</p>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 auto-rows-[250px]">
+          
+          <div class="col-span-2 row-span-2 overflow-hidden" data-aos="fade-up">
+            <img src="https://i.ibb.co/HpXGprMV/IMG-20260213-WA0015.jpg" alt="Pretty Dazzle Setup" class="w-full h-full object-cover img-editorial hover:scale-105 transition-transform duration-700">
+          </div>
+          
+          <div class="col-span-1 row-span-1 overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+            <img src="https://i.ibb.co/4g7ByqvV/IMG-20260213-WA0028.jpg" alt="Detail Shot" class="w-full h-full object-cover img-editorial hover:scale-105 transition-transform duration-700">
+          </div>
+          
+          <div class="col-span-1 row-span-1 overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+            <img src="https://i.ibb.co/QFpyDHS0/IMG-20260213-WA0029.jpg" alt="Floral Details" class="w-full h-full object-cover img-editorial hover:scale-105 transition-transform duration-700">
+          </div>
+          
+          <div class="col-span-2 md:col-span-1 row-span-1 overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+            <img src="https://i.ibb.co/gZLkMyx3/IMG-20260213-WA0035.jpg" alt="Gift Presentation" class="w-full h-full object-cover img-editorial hover:scale-105 transition-transform duration-700">
+          </div>
+          
+          <div class="col-span-2 md:col-span-1 row-span-1 overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+            <img src="https://i.ibb.co/N85Xb6Y/IMG-20260213-WA0038.jpg" alt="Custom Creation" class="w-full h-full object-cover img-editorial hover:scale-105 transition-transform duration-700">
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="w-full bg-pd-bg py-32">
+      <div class="max-w-3xl mx-auto px-6 text-center" data-aos="zoom-in">
+        <p class="text-xs tracking-[0.2em] uppercase text-gray-500 mb-8 border-b border-gray-300 inline-block pb-2">Behind the Craft</p>
+        <h2 class="font-serif text-3xl md:text-5xl leading-snug mb-10 text-pd-text italic">
+          "A celebration of local artistry and the pure joy of giving."
+        </h2>
+        <p class="text-sm text-gray-600 leading-relaxed mb-12 font-light">
+          What began as a personal passion for detailed crafting by Christie Esparon has blossomed into a dedicated gifting service. Quality, presentation, and deeply personal storytelling are at the core of what we do. When you choose us, you are investing in a beautifully hand-crafted memory designed to last a lifetime.
         </p>
-        <a href="/about" class="inline-block border-2 border-pd-dark text-pd-dark font-semibold px-8 py-3 rounded-full hover:bg-pd-dark hover:text-white transition-colors">
-          Read Our Story
+        <a href="/about" class="text-xs tracking-[0.15em] uppercase text-pd-text hover:text-gray-500 transition-colors border border-pd-text px-8 py-3">
+          Read Our Full Story
         </a>
       </div>
     </section>
 
   </main>
 
-  <footer class="bg-pd-dark text-white pt-16 pb-8 px-6 md:px-12 mt-auto">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 mb-12 text-center md:text-left">
+  <footer class="bg-white pt-24 pb-12 border-t border-pd-lines w-full">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-12">
       
-      <div>
-        <h3 class="font-serif font-bold text-2xl mb-6 tracking-wide text-pd-blush">Pretty Dazzle</h3>
-        <p class="text-gray-400 text-sm mb-6 max-w-xs mx-auto md:mx-0">
-          Curated luxury gifts and eternal floral arrangements beautifully crafted in Seychelles.
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
+        
+        <div class="md:col-span-2">
+          <h3 class="font-serif text-3xl mb-6">Pretty Dazzle</h3>
+          <p class="text-sm text-gray-500 leading-relaxed font-light max-w-sm mb-8">
+            Curated luxury gifts and eternal floral arrangements beautifully crafted in Mahe, Seychelles. Elevating ordinary days into extraordinary moments.
+          </p>
+          <a href="mailto:marushaestra@gmail.com" class="text-sm text-pd-text hover:text-gray-500 transition-colors block mb-2">marushaestra@gmail.com</a>
+          <a href="https://wa.me/2482569697" target="_blank" class="text-sm text-pd-text hover:text-gray-500 transition-colors block">WhatsApp: +248 256 9697</a>
+        </div>
+
+        <div>
+          <h4 class="text-[10px] tracking-[0.2em] uppercase text-gray-400 mb-6 border-b border-pd-lines pb-2">Directory</h4>
+          <ul class="space-y-4 text-sm font-light">
+            <li><a href="/" class="hover:italic transition-all">Home</a></li>
+            <li><a href="/collections" class="hover:italic transition-all">Our Collections</a></li>
+            <li><a href="/about" class="hover:italic transition-all">The Story</a></li>
+            <li><a href="/terms" class="hover:italic transition-all">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-[10px] tracking-[0.2em] uppercase text-gray-400 mb-6 border-b border-pd-lines pb-2">Social Connection</h4>
+          <ul class="space-y-4 text-sm font-light">
+            <li><a href="https://www.instagram.com/prettydazzled?utm_source=qr&igsh=MWRlY29wcWdhY3d3eQ==" target="_blank" class="hover:italic transition-all">Instagram</a></li>
+            <li><a href="https://www.tiktok.com/@pretty_dazzled?_r=1&_t=ZS-93tGPsqaVnR" target="_blank" class="hover:italic transition-all">TikTok</a></li>
+            <li><a href="https://www.facebook.com/share/1DMy9XTiXC/" target="_blank" class="hover:italic transition-all">Facebook</a></li>
+          </ul>
+        </div>
+
+      </div>
+      
+      <div class="border-t border-pd-lines pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] tracking-[0.1em] uppercase text-gray-400">
+        <p>&copy; <span id="current-year"></span> Pretty Dazzle. All rights reserved.</p>
+        <p class="mt-4 md:mt-0">
+          Digital Architecture by <a href="https://bluewave-digital.tylernicholasgroup.com/" target="_blank" class="text-pd-text hover:text-gray-600 transition-colors font-medium">BlueWave Digital</a>
         </p>
-        <div class="space-y-3 text-sm text-gray-300">
-          <p><i class="fa-solid fa-envelope w-5 text-pd-rose"></i> <a href="mailto:marushaestra@gmail.com" class="hover:text-white transition-colors">marushaestra@gmail.com</a></p>
-          <p><i class="fa-brands fa-whatsapp w-5 text-pd-rose"></i> <a href="https://wa.me/2482569697" target="_blank" class="hover:text-white transition-colors">+248 256 9697</a></p>
-          <p><i class="fa-solid fa-location-dot w-5 text-pd-rose"></i> Mahe, Seychelles</p>
-        </div>
       </div>
 
-      <div class="flex flex-col space-y-4">
-        <h4 class="font-bold text-lg mb-2 text-white">Explore</h4>
-        <a href="/" class="text-gray-400 hover:text-pd-rose transition-colors text-sm">Home</a>
-        <a href="/collections" class="text-gray-400 hover:text-pd-rose transition-colors text-sm">Our Collections</a>
-        <a href="/about" class="text-gray-400 hover:text-pd-rose transition-colors text-sm">About Christie</a>
-        <a href="/terms" class="text-gray-400 hover:text-pd-rose transition-colors text-sm">Terms & Conditions</a>
-      </div>
-
-      <div>
-        <h4 class="font-bold text-lg mb-6 text-white">Connect With Us</h4>
-        <div class="flex justify-center md:justify-start space-x-4">
-          <a href="https://www.instagram.com/prettydazzled?utm_source=qr&igsh=MWRlY29wcWdhY3d3eQ==" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#E1306C] hover:scale-110 transition-all">
-            <i class="fa-brands fa-instagram text-lg"></i>
-          </a>
-          <a href="https://www.tiktok.com/@pretty_dazzled?_r=1&_t=ZS-93tGPsqaVnR" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-black hover:scale-110 transition-all">
-            <i class="fa-brands fa-tiktok text-lg"></i>
-          </a>
-          <a href="https://www.facebook.com/share/1DMy9XTiXC/" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#1877F2] hover:scale-110 transition-all">
-            <i class="fa-brands fa-facebook-f text-lg"></i>
-          </a>
-        </div>
-      </div>
-
-    </div>
-    
-    <div class="max-w-6xl mx-auto border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
-      <p>&copy; <span id="current-year"></span> Pretty Dazzle. All rights reserved.</p>
-      <p class="mt-4 md:mt-0">
-        Made by <a href="https://bluewave-digital.tylernicholasgroup.com/" target="_blank" class="text-gray-300 hover:text-white font-semibold transition-colors">BlueWave Digital</a>
-      </p>
     </div>
   </footer>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     window.addEventListener('load', function() {
-      AOS.init({ duration: 800, once: true, offset: 20 });
+      AOS.init({ duration: 1000, once: true, offset: 50 });
     });
 
     document.getElementById('mobile-menu-btn').addEventListener('click', function() {
