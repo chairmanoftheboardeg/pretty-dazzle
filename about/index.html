@@ -1,81 +1,277 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Pretty Dazzle</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="../style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Pretty Dazzle</title>
+  
+  <link rel="icon" href="https://i.ibb.co/YMFRf1x/Chat-GPT-Image-Apr-29-2026-06-12-57-PM.png" />
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { 
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            pd: {
+              blush: '#fff1f2',   /* Soft pink background */
+              rose: '#e11d48',    /* Vibrant pink/rose for buttons */
+              roseDark: '#be123c',
+              dark: '#1c1917',    /* Soft black for elegant text */
+              lines: '#fce7f3'    /* Very soft pink border lines */
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { background-color: #ffffff; color: #1c1917; }
+    body.loading { overflow: hidden; height: 100vh; }
+    
+    /* Loading Screen */
+    #loading-screen { transition: opacity 0.8s ease-out, visibility 0.8s; }
+    .pulse-logo { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.95); } }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #fff1f2; }
+    ::-webkit-scrollbar-thumb { background: #fda4af; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #e11d48; }
+
+    /* Nav Hover Links */
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: ''; position: absolute; width: 100%; transform: scaleX(0); height: 2px;
+      bottom: -4px; left: 0; background-color: #e11d48; transform-origin: bottom right; transition: transform 0.3s ease-out;
+    }
+    .nav-link:hover::after { transform: scaleX(1); transform-origin: bottom left; }
+  </style>
 </head>
-<body>
+<body class="font-sans flex flex-col min-h-screen loading">
 
-    <nav class="navbar">
-        <a href="../" class="logo">Pretty Dazzle</a>
-        <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="nav-links">
-            <a href="../">Home</a>
-            <a href="../collections/">Collections</a>
-            <a href="#" class="active">About</a>
-            <a href="../terms/">T&Cs</a>
-        </div>
-    </nav>
+  <div id="loading-screen" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-pd-blush">
+    <img src="https://i.ibb.co/YMFRf1x/Chat-GPT-Image-Apr-29-2026-06-12-57-PM.png" alt="Pretty Dazzle" class="h-24 md:h-32 pulse-logo mb-6 object-contain">
+    <p class="font-serif italic text-pd-rose text-lg tracking-widest">Unwrapping the story...</p>
+  </div>
 
-    <header class="page-header" style="background-color: var(--pink-light);">
-        <h1>Our <span class="cursive" style="color: var(--pink-primary);">Story</span></h1>
-        <p>Crafting joy and unforgettable memories in Seychelles.</p>
+  <nav class="bg-white/95 backdrop-blur-md py-4 px-6 md:px-12 flex justify-between items-center shadow-sm sticky top-0 z-50">
+    <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-600 flex-1">
+      <a href="/" class="nav-link hover:text-pd-rose transition-colors">Home</a>
+      <a href="/collections" class="nav-link hover:text-pd-rose transition-colors">Collections</a>
+      <a href="/about" class="text-pd-rose font-semibold border-b-2 border-pd-rose pb-1">About Us</a>
+    </div>
+
+    <a href="/" class="flex justify-center flex-1">
+      <img src="https://i.ibb.co/YMFRf1x/Chat-GPT-Image-Apr-29-2026-06-12-57-PM.png" alt="Pretty Dazzle" class="h-12 object-contain transition-transform hover:scale-105">
+    </a>
+    
+    <button id="mobile-menu-btn" class="md:hidden text-pd-dark hover:text-pd-rose transition-colors text-2xl flex-1 text-right">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-600 flex-1 justify-end items-center">
+      <a href="/terms" class="nav-link hover:text-pd-rose transition-colors">Terms</a>
+      <a href="https://wa.me/2482569697" target="_blank" class="bg-pd-rose hover:bg-pd-roseDark text-white px-6 py-2.5 rounded-full transition-all shadow-md flex items-center transform hover:-translate-y-0.5">
+        <i class="fa-brands fa-whatsapp text-lg mr-2"></i> Message Us
+      </a>
+    </div>
+  </nav>
+
+  <div id="mobile-menu" class="hidden bg-white border-b border-gray-100 px-6 py-8 flex flex-col space-y-6 text-center text-pd-dark text-lg font-medium md:hidden absolute w-full z-40 shadow-2xl top-[72px]">
+    <a href="/" class="hover:text-pd-rose transition-colors">Home</a>
+    <a href="/collections" class="hover:text-pd-rose transition-colors">Collections</a>
+    <a href="/about" class="text-pd-rose">About Us</a>
+    <a href="/terms" class="hover:text-pd-rose transition-colors">Terms</a>
+    <div class="pt-4">
+      <a href="https://wa.me/2482569697" target="_blank" class="inline-flex bg-pd-rose hover:bg-pd-roseDark text-white px-8 py-3 rounded-full transition-all shadow-md items-center justify-center">
+        <i class="fa-brands fa-whatsapp text-xl mr-2"></i> WhatsApp Us
+      </a>
+    </div>
+  </div>
+
+  <main class="flex-grow w-full flex flex-col items-center">
+    
+    <header class="w-full bg-pd-blush pt-24 pb-20 px-6 text-center border-b border-pd-lines">
+      <div class="max-w-3xl mx-auto" data-aos="fade-up">
+        <p class="text-pd-rose tracking-[0.25em] uppercase text-xs font-bold mb-4">Behind the Craft</p>
+        <h1 class="text-4xl md:text-6xl font-serif font-bold mb-6 text-pd-dark leading-tight">
+          A Celebration of <br><span class="italic text-pd-rose font-light">Local Artistry</span>
+        </h1>
+        <p class="text-lg text-gray-600 font-light max-w-2xl mx-auto leading-relaxed">
+          From a personal passion for detailed crafting to a dedicated gifting service bringing dazzling smiles to faces across the islands.
+        </p>
+      </div>
     </header>
 
-    <section class="page-container" style="max-width: 800px; text-align: center;">
-        <span class="badge">ABOUT US</span>
-        <h2 style="font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-dark);">Welcome to Pretty Dazzle</h2>
-        <p class="lead-text" style="margin-bottom: 2.5rem;">We bring you customised, unique crafting gifts hand-made with ❤️ in Seychelles.</p>
+    <section class="w-full bg-white py-24">
+      <div class="max-w-6xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
         
-        <div style="text-align: left; font-size: 1.05rem; color: var(--text-dark);">
-            <p style="margin-bottom: 1.5rem;">Founded by <strong>Christie Esparon</strong>, Pretty Dazzle is a celebration of local artistry and the pure joy of giving. What began as a personal passion for detailed crafting has blossomed into a dedicated gifting service, designed to bring dazzling smiles to faces across the islands.</p>
-            
-            <p style="margin-bottom: 1.5rem;">We believe that every gift should tell a unique, personal story. Whether you are celebrating a milestone birthday, a romantic anniversary, or simply surprising a loved one "just because," our creations are made to elevate those ordinary days into extraordinary moments. From our carefully curated luxury hampers bursting with treats to our vibrant, eternal artificial blooms, we pour our hearts into every single detail.</p>
-            
-            <p style="margin-bottom: 2rem;">Quality and presentation are at the core of what we do. We source beautiful materials, assemble each piece with precision, and package everything with the signature elegance that defines the Pretty Dazzle experience. When you choose us, you are not just purchasing a gift; you are investing in a beautifully hand-crafted memory designed to last a lifetime.</p>
+        <div class="w-full lg:w-1/2 relative" data-aos="fade-right">
+          <div class="absolute inset-0 bg-pd-rose rounded-3xl transform translate-x-4 translate-y-4 opacity-10"></div>
+          <div class="rounded-3xl overflow-hidden aspect-[4/5] relative z-10 shadow-lg">
+            <img src="https://i.ibb.co/bghk81d6/IMG-20260213-WA0057.jpg" alt="Pretty Dazzle Creations" class="w-full h-full object-cover">
+          </div>
         </div>
+
+        <div class="w-full lg:w-1/2" data-aos="fade-left">
+          <h2 class="text-3xl md:text-4xl font-serif font-bold text-pd-dark mb-8">Every Gift Tells a Story.</h2>
+          
+          <div class="space-y-6 text-gray-600 font-light leading-relaxed text-lg">
+            <p>
+              We believe that true luxury lies in the details. Whether you are celebrating a milestone birthday, a romantic anniversary, or simply surprising a loved one "just because," our creations are made to elevate those ordinary days into extraordinary moments.
+            </p>
+            <p>
+              From our carefully curated luxury hampers bursting with premium treats to our vibrant, eternal artificial blooms, we pour our hearts into every single detail. We source beautiful materials, assemble each piece with absolute precision, and package everything with the signature elegance that defines the Pretty Dazzle experience.
+            </p>
+            <p>
+              When you choose us, you are not just purchasing a gift; you are investing in a beautifully hand-crafted memory designed to last a lifetime.
+            </p>
+          </div>
         </div>
+
+      </div>
     </section>
 
-    <footer>
-        <div class="footer-content">
-            <p>Pretty Dazzle - Turning moments into memories.</p>
-            <div class="social-links" style="margin: 1.5rem 0; display: flex; justify-content: center; gap: 1.5rem;">
-                <a href="https://www.instagram.com/prettydazzled?utm_source=qr&igsh=MWRlY29wcWdhY3d3eQ==" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@pretty_dazzled?_r=1&_t=ZS-93tGPsqaVnR" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="https://www.facebook.com/share/1DMy9XTiXC/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://wa.me/2482569697" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-            </div>
-            <p>&copy; 2026 Pretty Dazzle Seychelles. All Rights Reserved.</p>
-            <div class="group-links">
-                Managed by <a href="https://bluewave-digital.tylernicholasgroup.com" target="_blank">BlueWave Digital</a> | 
-                Member of <a href="https://tylernicholasgroup.com" target="_blank">The Tyler Nicholas Group</a> | 
-                By <a href="https://tyler.tylernicholasgroup.com" target="_blank">Tyler Nicholas</a>
-            </div>
+    <section class="w-full bg-pd-blush py-24 border-y border-pd-lines">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <div data-aos="zoom-in">
+          <div class="w-24 h-24 mx-auto bg-white rounded-full flex items-center justify-center text-pd-rose text-4xl mb-8 shadow-sm border border-pd-lines">
+            <i class="fa-solid fa-heart"></i>
+          </div>
+          <h2 class="text-3xl md:text-5xl font-serif font-bold text-pd-dark mb-4">Meet the Founder</h2>
+          <p class="text-gray-600 font-light text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
+            Pretty Dazzle is the creative vision of <strong class="font-semibold text-pd-dark">Christie Esparon</strong>. Driven by a love for bespoke aesthetics and the pure joy of giving, Christie transforms simple concepts into breathtaking physical expressions of love and appreciation.
+          </p>
+          
+          <a href="https://www.linkedin.com/in/christy-esparon-375869164" target="_blank" class="inline-flex items-center justify-center bg-white border border-gray-200 text-pd-dark hover:text-white hover:bg-[#0A66C2] hover:border-[#0A66C2] font-semibold py-3 px-8 rounded-full transition-all shadow-sm">
+            <i class="fa-brands fa-linkedin text-xl mr-3"></i> Connect on LinkedIn
+          </a>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const hamburger = document.getElementById('hamburger');
-            const navLinks = document.querySelector('.nav-links');
-            if (hamburger) {
-                hamburger.addEventListener('click', () => {
-                    navLinks.classList.toggle('nav-active');
-                    hamburger.classList.toggle('toggle');
-                });
-            }
-        });
-    </script>
+    <section class="w-full bg-white py-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16" data-aos="fade-up">
+          <h2 class="text-3xl md:text-5xl font-serif font-bold text-pd-dark mb-4">Our Promise to You</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+          <div data-aos="fade-up" data-aos-delay="100">
+            <h3 class="text-2xl font-serif font-bold mb-3 text-pd-rose italic">Quality</h3>
+            <p class="text-gray-600 leading-relaxed font-light">We source only the finest treats, materials, and florals to ensure your gift feels truly premium from the moment it's received.</p>
+          </div>
+          <div data-aos="fade-up" data-aos-delay="200">
+            <h3 class="text-2xl font-serif font-bold mb-3 text-pd-rose italic">Presentation</h3>
+            <p class="text-gray-600 leading-relaxed font-light">The unboxing experience is everything. We pride ourselves on immaculate assembly and stunning aesthetic design.</p>
+          </div>
+          <div data-aos="fade-up" data-aos-delay="300">
+            <h3 class="text-2xl font-serif font-bold mb-3 text-pd-rose italic">Personalization</h3>
+            <p class="text-gray-600 leading-relaxed font-light">No two stories are the same, and no two gifts should be either. We work with you to add the perfect personal touches.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="w-full bg-pd-blush py-24 border-t border-pd-lines text-center">
+      <div class="max-w-3xl mx-auto px-6" data-aos="zoom-in">
+        <i class="fa-brands fa-whatsapp text-4xl text-pd-rose mb-6"></i>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold mb-4 text-pd-dark">
+          Ready to create something beautiful?
+        </h2>
+        <p class="text-gray-600 leading-relaxed mb-8 font-light">
+          Let's design a gift that will leave them completely dazzled.
+        </p>
+        <a href="https://wa.me/2482569697" target="_blank" class="inline-flex bg-pd-rose hover:bg-pd-roseDark text-white font-semibold px-10 py-4 rounded-full transition-all shadow-lg items-center text-lg">
+          Message Us on WhatsApp
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-pd-blush pt-16 pb-10 px-6 md:px-12 mt-auto border-t border-pd-lines">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+      
+      <div class="md:col-span-2 text-center md:text-left">
+        <img src="https://i.ibb.co/YMFRf1x/Chat-GPT-Image-Apr-29-2026-06-12-57-PM.png" alt="Pretty Dazzle" class="h-16 mx-auto md:mx-0 mb-6 object-contain">
+        <p class="text-gray-600 text-sm font-light leading-relaxed max-w-sm mx-auto md:mx-0">
+          Curated luxury gifts and eternal floral arrangements beautifully hand-crafted in Mahe, Seychelles. Elevating ordinary days into extraordinary memories.
+        </p>
+      </div>
+
+      <div class="text-center md:text-left">
+        <h4 class="font-serif font-bold text-xl mb-4 text-pd-dark">Explore</h4>
+        <div class="flex flex-col space-y-3 font-light text-gray-600">
+          <a href="/" class="hover:text-pd-rose transition-colors">Home</a>
+          <a href="/collections" class="hover:text-pd-rose transition-colors">Our Collections</a>
+          <a href="/about" class="hover:text-pd-rose transition-colors">About Christie</a>
+          <a href="/terms" class="hover:text-pd-rose transition-colors">Terms & Conditions</a>
+        </div>
+      </div>
+
+      <div class="text-center md:text-left">
+        <h4 class="font-serif font-bold text-xl mb-4 text-pd-dark">Connect</h4>
+        <div class="flex flex-col space-y-3 font-light text-gray-600 mb-6">
+          <a href="mailto:marushaestra@gmail.com" class="hover:text-pd-rose transition-colors">marushaestra@gmail.com</a>
+          <a href="https://wa.me/2482569697" target="_blank" class="hover:text-pd-rose transition-colors">WhatsApp: +248 256 9697</a>
+        </div>
+        
+        <div class="flex justify-center md:justify-start space-x-4">
+          <a href="https://www.instagram.com/prettydazzled?utm_source=qr&igsh=MWRlY29wcWdhY3d3eQ==" target="_blank" class="w-10 h-10 rounded-full bg-white border border-pd-lines flex items-center justify-center text-pd-rose hover:bg-pd-rose hover:text-white hover:scale-110 transition-all shadow-sm">
+            <i class="fa-brands fa-instagram text-lg"></i>
+          </a>
+          <a href="https://www.tiktok.com/@pretty_dazzled?_r=1&_t=ZS-93tGPsqaVnR" target="_blank" class="w-10 h-10 rounded-full bg-white border border-pd-lines flex items-center justify-center text-pd-rose hover:bg-black hover:text-white hover:border-black hover:scale-110 transition-all shadow-sm">
+            <i class="fa-brands fa-tiktok text-lg"></i>
+          </a>
+          <a href="https://www.facebook.com/share/1DMy9XTiXC/" target="_blank" class="w-10 h-10 rounded-full bg-white border border-pd-lines flex items-center justify-center text-pd-rose hover:bg-[#1877F2] hover:text-white hover:border-[#1877F2] hover:scale-110 transition-all shadow-sm">
+            <i class="fa-brands fa-facebook-f text-lg"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+    
+    <div class="max-w-6xl mx-auto border-t border-pd-lines pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 font-light">
+      <p>&copy; <span id="current-year"></span> Pretty Dazzle. All rights reserved.</p>
+      <p class="mt-4 md:mt-0">
+        Made by <a href="https://bluewave-digital.tylernicholasgroup.com/" target="_blank" class="font-semibold text-gray-700 hover:text-pd-rose transition-colors">BlueWave Digital</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // Loading Screen Logic
+    window.addEventListener('load', function() {
+      const loader = document.getElementById('loading-screen');
+      setTimeout(() => {
+        loader.style.opacity = '0';
+        loader.style.visibility = 'hidden';
+        document.body.classList.remove('loading');
+        AOS.init({ duration: 1000, once: true, offset: 40 });
+      }, 800); 
+    });
+
+    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    document.getElementById('current-year').innerText = new Date().getFullYear();
+  </script>
 </body>
 </html>
